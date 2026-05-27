@@ -7,40 +7,50 @@ export default function Footer() {
   const { content } = useLanguage();
 
   return (
-    <footer className="border-t border-white/10 bg-[#121C25]/86">
-      <div className="mx-auto grid w-full max-w-[1320px] gap-10 px-6 py-14 md:grid-cols-2 md:px-10 lg:px-16">
-        <div>
-          <p className="font-display text-2xl tracking-[0.14em] text-[#F2F6F8] uppercase">
-            Balance
-          </p>
-          <p className="mt-4 max-w-md text-sm leading-relaxed text-[#B8C2C8]">
-            {content.footer.description}
-          </p>
-        </div>
-
-        <div className="grid gap-5 text-sm text-[#B8C2C8] md:justify-end md:text-right">
-          <Link
-            href="https://www.instagram.com/balancesportcomplex/"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-[#28C279]"
-          >
-            instagram.com/balancesportcomplex
-          </Link>
-          <Link
-            href="https://www.facebook.com/p/Balance-Sport-Complex-61556143100729/"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-[#28C279]"
-          >
-            facebook.com/Balance-Sport-Complex
-          </Link>
-          <div>
-            <p>For membership: 041 910 911</p>
-            <p>Administration: 041 910 916</p>
+    <footer className="border-t border-white/10 bg-[#101922]/92">
+      <div className="mx-auto w-full max-w-[1320px] px-6 py-14 md:px-10 lg:px-16">
+        <div className="grid gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="font-display text-3xl tracking-[0.1em] text-[#F2F6F8] uppercase">
+              Balance
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-[#B8C2C8]">
+              {content.footer.description}
+            </p>
           </div>
-          <p>Dzorap 40/2, Yerevan, Armenia, 0002</p>
-          <p>Mon-Sat: 07:00-23:00 / Sun: 08:00-22:00</p>
+
+          <div className="lg:col-span-4">
+            <p className="text-xs tracking-[0.18em] text-[#E3A858] uppercase">Contact</p>
+            <div className="mt-4 space-y-2 text-sm text-[#B8C2C8]">
+              <p>For membership: 041 910 911</p>
+              <p>Administration: 041 910 916</p>
+              <p>Dzorap 40/2, Yerevan, Armenia, 0002</p>
+              <p>Mon-Sat: 07:00-23:00</p>
+              <p>Sun: 08:00-22:00</p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-4">
+            <p className="text-xs tracking-[0.18em] text-[#E3A858] uppercase">Social</p>
+            <div className="mt-4 grid gap-3 text-sm text-[#B8C2C8]">
+              <Link
+                href="https://www.instagram.com/balancesportcomplex/"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-white/12 bg-[#223542]/60 px-4 py-3 hover:text-[#28C279]"
+              >
+                instagram.com/balancesportcomplex
+              </Link>
+              <Link
+                href="https://www.facebook.com/p/Balance-Sport-Complex-61556143100729/"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-xl border border-white/12 bg-[#223542]/60 px-4 py-3 hover:text-[#28C279]"
+              >
+                facebook.com/Balance-Sport-Complex
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
 

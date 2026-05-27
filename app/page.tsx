@@ -33,16 +33,19 @@ const FinalCTA = dynamic(() => import("@/components/sections/FinalCTA"), {
 
 export default function Home() {
   return (
-    <div className="relative">
+    <div className="relative overflow-x-clip">
       <Navbar />
 
       <main>
         <ScrollHero />
-        <CollectionSection />
-        <RitualStorySection />
-        <ExperienceSection />
-        <InstagramSection />
-        <FinalCTA />
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_18%,rgba(40,194,121,0.12),transparent_38%),radial-gradient(circle_at_84%_20%,rgba(227,168,88,0.12),transparent_34%),linear-gradient(180deg,rgba(22,32,41,0.88)_0%,rgba(15,21,27,0.96)_100%)]" />
+          <CollectionSection />
+          <RitualStorySection />
+          <ExperienceSection />
+          <InstagramSection />
+          <FinalCTA />
+        </div>
       </main>
 
       <Footer />

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Manrope, Montserrat } from "next/font/google";
+import { Manrope, Montserrat, Noto_Sans_Armenian } from "next/font/google";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import "./globals.css";
 
@@ -13,6 +13,13 @@ const montserrat = Montserrat({
 const manrope = Manrope({
   variable: "--font-manrope",
   subsets: ["latin", "cyrillic"],
+  display: "swap",
+});
+
+const notoArmenian = Noto_Sans_Armenian({
+  variable: "--font-armenian",
+  subsets: ["armenian"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
@@ -30,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="am"
-      className={`${montserrat.variable} ${manrope.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${manrope.variable} ${notoArmenian.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[var(--bg-main)] text-[var(--text-primary)] font-body">
         <LanguageProvider>{children}</LanguageProvider>

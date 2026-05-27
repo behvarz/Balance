@@ -17,9 +17,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-manrope);
-  --font-body: var(--font-manrope);
-  --font-display: var(--font-montserrat);
+  --font-sans: var(--font-manrope), var(--font-armenian);
+  --font-body: var(--font-manrope), var(--font-armenian);
+  --font-display: var(--font-montserrat), var(--font-armenian);
 }
 
 body {
@@ -29,7 +29,7 @@ body {
     radial-gradient(circle at 72% 84%, rgb(79 144 255 / 10%), transparent 44%),
     linear-gradient(155deg, #0f151b 0%, #162029 48%, #111820 100%);
   color: var(--text-primary);
-  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-manrope), var(--font-armenian), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   min-height: 100vh;
 }
@@ -88,6 +88,13 @@ button {
     rgb(24 34 43 / 82%)
   );
   backdrop-filter: blur(18px);
+}
+
+.section-shell {
+  border: 1px solid rgb(255 255 255 / 11%);
+  background: linear-gradient(162deg, rgb(39 54 66 / 85%), rgb(26 37 47 / 88%));
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
 }
 
 .luxury-divider {

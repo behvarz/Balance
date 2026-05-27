@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+:root {
+  --bg-main: #050505;
+  --bg-secondary: #0e0e0e;
+  --surface: #151515;
+  --brand-green: #0e6b3d;
+  --accent-green: #1fa15a;
+  --luxury-amber: #b67a2d;
+  --soft-amber: #d89b47;
+  --text-primary: #f5f5f5;
+  --text-secondary: #a1a1a1;
+  --text-muted: #6b6b6b;
+  --glass-border: rgb(255 255 255 / 8%);
+  --green-glow: rgb(31 161 90 / 25%);
+  --amber-glow: rgb(214 155 71 / 18%);
+}
+
+@theme inline {
+  --font-sans: var(--font-manrope);
+  --font-body: var(--font-manrope);
+  --font-display: var(--font-cormorant);
+}
+
+body {
+  background:
+    radial-gradient(circle at 14% 14%, rgb(31 161 90 / 14%), transparent 42%),
+    radial-gradient(circle at 84% 16%, rgb(214 155 71 / 12%), transparent 36%),
+    radial-gradient(circle at 72% 84%, rgb(31 161 90 / 8%), transparent 42%),
+    linear-gradient(155deg, #050505 0%, #0a0a0a 46%, #050505 100%);
+  color: var(--text-primary);
+  font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+  min-height: 100vh;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 88px;
+  background: var(--bg-main);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  color: var(--bg-main);
+  background: rgb(214 155 71 / 80%);
+}
+
+a,
+button {
+  transition:
+    color 250ms ease,
+    background-color 250ms ease,
+    border-color 250ms ease,
+    box-shadow 250ms ease,
+    transform 250ms ease,
+    opacity 250ms ease;
+}
+
+.grain-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.16;
+  mix-blend-mode: soft-light;
+  background-image: radial-gradient(rgb(245 245 245 / 22%) 0.7px, transparent 0.7px);
+  background-size: 2px 2px;
+}
+
+.gold-glow {
+  box-shadow:
+    0 0 0 1px var(--glass-border),
+    0 18px 46px rgb(0 0 0 / 52%),
+    0 0 44px var(--green-glow),
+    0 0 58px var(--amber-glow);
+}
+
+.glass-surface {
+  border: 1px solid var(--glass-border);
+  background: linear-gradient(
+    160deg,
+    rgb(21 21 21 / 92%),
+    rgb(14 14 14 / 86%)
+  );
+  backdrop-filter: blur(18px);
+}
+
+.luxury-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(31 161 90 / 28%),
+    rgb(214 155 71 / 56%),
+    rgb(31 161 90 / 28%),
+    transparent
+  );
+}
+
+@keyframes scrollDot {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  25% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, 16px);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+}

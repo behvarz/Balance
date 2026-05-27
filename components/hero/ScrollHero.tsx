@@ -1,0 +1,215 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroOverlayText from "./HeroOverlayText";
+
+export default function ScrollHero() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const [progress, setProgress] = useState(0);
+  const [fallbackMode, setFallbackMode] = useState(false);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const video = videoRef.current;
+
+    if (!section || !video) {
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const shouldUseFallback = prefersReducedMotion;
+
+    setFallbackMode(shouldUseFallback);
+
+    let updateTween: gsap.core.Tween | null = null;
+    let scrubTrigger: ScrollTrigger | null = null;
+    let autoplayInitiated = false;
+    let animationFrameId = 0;
+
+    const autoplayVideo = () => {
+      if (autoplayInitiated && !video.paused) {
+        return;
+      }
+
+      autoplayInitiated = true;
+      video.loop = true;
+      video.muted = true;
+      video.playbackRate = 0.9;
+      video.setAttribute("autoplay", "");
+
+      const playPromise = video.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          autoplayInitiated = false;
+        });
+      }
+    };
+
+    const setupScrub = () => {
+      if (!Number.isFinite(video.duration) || video.duration <= 0.1) {
+        return;
+      }
+
+      const state = {
+        targetTime: 0,
+        smoothTime: 0,
+      };
+
+      video.pause();
+      video.loop = false;
+      video.currentTime = 0;
+
+      const maxTime = Math.max(video.duration - 0.06, 0);
+      const smoothFactor = 0.18;
+      const holdRatio = 1 / 6;
+      const holdStart = 1 - holdRatio;
+      const targetFrameInterval = 1000 / 24;
+      let lastSeekTimestamp = 0;
+      let pendingSeekFrames = 0;
+
+      const tick = (timestamp: number) => {
+        state.smoothTime += (state.targetTime - state.smoothTime) * smoothFactor;
+
+        if (
+          video.readyState >= 2 &&
+          timestamp - lastSeekTimestamp >= targetFrameInterval &&
+          !video.seeking
+        ) {
+          const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
+
+          if (Math.abs(video.currentTime - nextTime) > 0.016) {
+            video.currentTime = nextTime;
+            lastSeekTimestamp = timestamp;
+          }
+        }
+
+        if (video.seeking && Math.abs(video.currentTime - state.targetTime) > 0.08) {
+          pendingSeekFrames += 1;
+        } else {
+          pendingSeekFrames = Math.max(0, pendingSeekFrames - 2);
+        }
+
+        if (pendingSeekFrames > 80) {
+          scrubTrigger?.kill();
+          setFallbackMode(true);
+          autoplayVideo();
+          return;
+        }
+
+        animationFrameId = window.requestAnimationFrame(tick);
+      };
+
+      animationFrameId = window.requestAnimationFrame(tick);
+
+      scrubTrigger = ScrollTrigger.create({
+        trigger: section,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.4,
+        invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          const nextProgress = gsap.utils.clamp(0, 1, self.progress);
+          setProgress(nextProgress);
+
+          const mappedProgress =
+            nextProgress < holdStart ? nextProgress / holdStart : 1;
+          state.targetTime = mappedProgress * maxTime;
+        },
+      });
+
+      updateTween = gsap.to(video, {
+        opacity: 1,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    };
+
+    const onLoadedMetadata = () => {
+      setIsReady(true);
+      video.preload = "auto";
+
+      if (shouldUseFallback) {
+        autoplayVideo();
+      } else {
+        void video.play().then(() => video.pause()).catch(() => null);
+        setupScrub();
+      }
+    };
+
+    if (video.readyState >= 1) {
+      onLoadedMetadata();
+    } else {
+      video.addEventListener("loadedmetadata", onLoadedMetadata, { once: true });
+    }
+
+    const onVisibilityChange = () => {
+      if (!document.hidden && shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    const onCanPlay = () => {
+      if (shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    const onFirstInteraction = () => {
+      if (shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    video.addEventListener("canplay", onCanPlay);
+    window.addEventListener("touchstart", onFirstInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("pointerdown", onFirstInteraction, {
+      passive: true,
+      once: true,
+    });
+
+    return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      video.removeEventListener("loadedmetadata", onLoadedMetadata);
+      video.removeEventListener("canplay", onCanPlay);
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("pointerdown", onFirstInteraction);
+      window.cancelAnimationFrame(animationFrameId);
+      updateTween?.kill();
+      scrubTrigger?.kill();
+    };
+  }, []);
+
+  return (
+    <section id="home" ref={sectionRef} className="relative h-[400vh]">
+      <div className="sticky top-0 h-screen overflow-hidden">
+        <video
+          ref={videoRef}
+          className="h-full w-full object-cover"
+          src="/balance-hero.mp4"
+          muted
+          playsInline
+          preload="metadata"
+        />
+
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.12)_32%,rgba(5,5,5,0.84)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(31,161,90,0.18)_0%,transparent_38%),radial-gradient(circle_at_82%_16%,rgba(214,155,71,0.16)_0%,transparent_36%)]" />
+        <div className="grain-overlay" />
+
+        <HeroOverlayText progress={fallbackMode ? 0 : progress} isReady={isReady} />
+      </div>
+    </section>
+  );
+}

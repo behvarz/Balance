@@ -1,0 +1,94 @@
+"use client";
+
+import Link from "next/link";
+import { useLanguage } from "@/components/providers/LanguageProvider";
+
+type HeroOverlayTextProps = {
+  progress: number;
+  isReady: boolean;
+};
+
+function getOpacity(progress: number, start: number, end: number): number {
+  const fadeZone = 0.05;
+
+  if (progress < start - fadeZone || progress > end + fadeZone) {
+    return 0;
+  }
+
+  if (progress >= start && progress <= end) {
+    return 1;
+  }
+
+  if (progress < start) {
+    return (progress - (start - fadeZone)) / fadeZone;
+  }
+
+  return 1 - (progress - end) / fadeZone;
+}
+
+export default function HeroOverlayText({
+  progress,
+  isReady,
+}: HeroOverlayTextProps) {
+  const { content } = useLanguage();
+  const ctaOpacity =
+    progress > 0.89 ? Math.min((progress - 0.89) / 0.06, 1) : 0;
+  const hintOpacity =
+    progress < 0.08 ? Math.max(0, Math.min((0.08 - progress) / 0.08, 1)) : 0;
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center px-6">
+      <div className="mx-auto flex w-full max-w-[1060px] flex-col items-center text-center">
+        {content.hero.moments.map((moment) => {
+          const phaseOpacity = getOpacity(progress, moment.start, moment.end);
+          const momentOpacity = isReady ? phaseOpacity * (1 - ctaOpacity) : 0;
+
+          return (
+            <p
+              key={moment.text}
+              className="absolute max-w-3xl text-4xl leading-tight tracking-[0.06em] text-[#F5F5F5] md:text-6xl lg:text-7xl font-display"
+              style={{
+                opacity: momentOpacity,
+                transform: `translateY(${(1 - phaseOpacity) * 18}px)`,
+              }}
+            >
+              {moment.text}
+            </p>
+          );
+        })}
+
+        <div
+          className="absolute top-[58%] left-1/2 flex w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-5 px-6"
+          style={{
+            opacity: ctaOpacity,
+          }}
+        >
+          <span className="font-display text-xl tracking-[0.14em] text-[#D89B47] uppercase md:text-2xl">
+            {content.hero.exploreCollection}
+          </span>
+          <Link
+            href="#collection"
+            className="pointer-events-auto inline-flex rounded-full border border-[rgba(255,255,255,0.14)] bg-[#151515]/72 px-6 py-3 text-xs tracking-[0.24em] text-[#F5F5F5] uppercase hover:-translate-y-0.5 hover:border-[#1FA15A]/60 hover:bg-[#0E6B3D]/22"
+          >
+            {content.actions.enter}
+          </Link>
+        </div>
+
+        <div
+          className="absolute flex flex-col items-center gap-2 md:bottom-10"
+          style={{
+            opacity: isReady ? hintOpacity : 0,
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 8rem)",
+          }}
+        >
+          <span className="text-[11px] tracking-[0.18em] text-[#A1A1A1] uppercase">
+            {content.hero.scrollHint}
+          </span>
+          <div className="relative h-9 w-5 rounded-full border border-[#1FA15A]/55">
+            <span className="absolute left-1/2 top-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#1FA15A] animate-[scrollDot_1.4s_ease-in-out_infinite]" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

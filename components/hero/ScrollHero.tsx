@@ -69,10 +69,10 @@ export default function ScrollHero() {
       video.currentTime = 0;
 
       const maxTime = Math.max(video.duration - 0.06, 0);
-      const smoothFactor = 0.18;
-      const holdRatio = 1 / 6;
+      const smoothFactor = 0.11;
+      const holdRatio = 1 / 7;
       const holdStart = 1 - holdRatio;
-      const targetFrameInterval = 1000 / 24;
+      const targetFrameInterval = 1000 / 30;
       let lastSeekTimestamp = 0;
       let pendingSeekFrames = 0;
 
@@ -114,7 +114,7 @@ export default function ScrollHero() {
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: 0.4,
+        scrub: 1.2,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const nextProgress = gsap.utils.clamp(0, 1, self.progress);
@@ -193,7 +193,7 @@ export default function ScrollHero() {
   }, []);
 
   return (
-    <section id="home" ref={sectionRef} className="relative h-[400vh]">
+    <section id="home" ref={sectionRef} className="relative h-[560vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <video
           ref={videoRef}
@@ -204,8 +204,8 @@ export default function ScrollHero() {
           preload="metadata"
         />
 
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.38)_0%,rgba(5,5,5,0.12)_32%,rgba(5,5,5,0.84)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(31,161,90,0.18)_0%,transparent_38%),radial-gradient(circle_at_82%_16%,rgba(214,155,71,0.16)_0%,transparent_36%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,21,27,0.32)_0%,rgba(15,21,27,0.1)_32%,rgba(15,21,27,0.68)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(40,194,121,0.15)_0%,transparent_40%),radial-gradient(circle_at_82%_16%,rgba(227,168,88,0.12)_0%,transparent_36%)]" />
         <div className="grain-overlay" />
 
         <HeroOverlayText progress={fallbackMode ? 0 : progress} isReady={isReady} />

@@ -23,7 +23,9 @@ type LanguageContextValue = {
 
 const STORAGE_KEY = "balance-language";
 const htmlLangByLanguage: Record<LanguageCode, string> = {
+  am: "am",
   en: "en",
+  ru: "ru",
 };
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);

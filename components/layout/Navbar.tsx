@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { languageCodes, type LanguageCode } from "@/lib/site-content";
@@ -44,15 +45,20 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "border-b border-white/8 bg-[#050505]/72 backdrop-blur-xl shadow-[0_14px_38px_rgba(0,0,0,0.5)]"
+          ? "border-b border-white/10 bg-[#101922]/74 backdrop-blur-xl shadow-[0_14px_38px_rgba(0,0,0,0.36)]"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex w-full max-w-[1320px] items-center justify-between px-6 py-4 md:px-10 lg:px-16">
         <Link href="#home" className="group">
-          <p className="font-display text-base tracking-[0.28em] text-[#F5F5F5] md:text-lg">
-            Balance
-          </p>
+          <Image
+            src="/logo-white.png"
+            alt="Balance Sport Complex"
+            width={220}
+            height={64}
+            className="h-9 w-auto md:h-10"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 text-xs tracking-[0.2em] md:flex">
@@ -60,7 +66,7 @@ export default function Navbar() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-[#F5F5F5]/82 hover:text-[#1FA15A]"
+              className="text-[#F2F6F8]/84 hover:text-[#28C279]"
             >
               {item.label}
             </Link>
@@ -69,7 +75,7 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           {hasLanguageToggle ? (
-            <div className="flex items-center rounded-full border border-white/12 bg-[#151515]/55 p-1">
+            <div className="flex items-center rounded-full border border-white/14 bg-[#25323C]/54 p-1">
               {languageCodes.map((code) => (
                 <button
                   key={code}
@@ -77,8 +83,8 @@ export default function Navbar() {
                   onClick={() => setLanguage(code as LanguageCode)}
                   className={`rounded-full px-3 py-1.5 text-[10px] tracking-[0.18em] transition-colors ${
                     language === code
-                      ? "bg-[#0E6B3D]/38 text-[#F5F5F5]"
-                      : "text-[#A1A1A1] hover:text-[#F5F5F5]"
+                      ? "bg-[#14945D]/42 text-[#F2F6F8]"
+                      : "text-[#B8C2C8] hover:text-[#F2F6F8]"
                   }`}
                 >
                   {code.toUpperCase()}
@@ -88,8 +94,8 @@ export default function Navbar() {
           ) : null}
 
           <Link
-            href="tel:+37496536006"
-            className="inline-flex items-center justify-center rounded-full border border-white/14 bg-[#151515]/72 px-5 py-2.5 text-[11px] tracking-[0.22em] text-[#F5F5F5] hover:-translate-y-0.5 hover:border-[#1FA15A]/58 hover:bg-[#0E6B3D]/24"
+            href="tel:+37441910911"
+            className="inline-flex items-center justify-center rounded-full border border-white/18 bg-[#24313B]/74 px-5 py-2.5 text-[11px] tracking-[0.2em] text-[#F2F6F8] hover:-translate-y-0.5 hover:border-[#28C279]/62 hover:bg-[#14945D]/26"
           >
             {content.actions.orderCoffee}
           </Link>
@@ -103,7 +109,7 @@ export default function Navbar() {
                 setIsLanguageMenuOpen((prev) => !prev);
                 setIsMobileMenuOpen(false);
               }}
-              className="rounded-full border border-white/14 bg-[#151515]/65 px-3 py-2 text-[10px] tracking-[0.16em] text-[#A1A1A1]"
+              className="rounded-full border border-white/16 bg-[#25323C]/66 px-3 py-2 text-[10px] tracking-[0.16em] text-[#B8C2C8]"
               aria-label={content.actions.language}
             >
               {language.toUpperCase()}
@@ -116,7 +122,7 @@ export default function Navbar() {
               setIsMobileMenuOpen((prev) => !prev);
               setIsLanguageMenuOpen(false);
             }}
-            className="rounded-full border border-white/14 bg-[#151515]/65 px-4 py-2 text-[10px] tracking-[0.16em] text-[#A1A1A1]"
+            className="rounded-full border border-white/16 bg-[#25323C]/66 px-4 py-2 text-[10px] tracking-[0.16em] text-[#B8C2C8]"
             aria-label={content.actions.menu}
           >
             {isMobileMenuOpen ? content.actions.close : content.actions.menu}
@@ -126,7 +132,7 @@ export default function Navbar() {
 
       {hasLanguageToggle && isLanguageMenuOpen ? (
         <div className="px-6 pb-4 md:hidden">
-          <div className="mx-auto w-full max-w-[1320px] rounded-2xl border border-white/10 bg-[#050505]/88 p-3 backdrop-blur-xl">
+          <div className="mx-auto w-full max-w-[1320px] rounded-2xl border border-white/12 bg-[#15212B]/88 p-3 backdrop-blur-xl">
             <p className="mb-2 text-[10px] tracking-[0.14em] text-[#D89B47] uppercase">
               {content.actions.language}
             </p>
@@ -141,8 +147,8 @@ export default function Navbar() {
                   }}
                   className={`rounded-full px-3 py-2 text-[11px] tracking-[0.14em] ${
                     language === code
-                      ? "bg-[#0E6B3D]/38 text-[#F5F5F5]"
-                      : "bg-[#151515]/70 text-[#A1A1A1]"
+                      ? "bg-[#14945D]/42 text-[#F2F6F8]"
+                      : "bg-[#24313B]/70 text-[#B8C2C8]"
                   }`}
                 >
                   {code.toUpperCase()}
@@ -155,14 +161,14 @@ export default function Navbar() {
 
       {isMobileMenuOpen ? (
         <div className="px-6 pb-4 md:hidden">
-          <div className="mx-auto w-full max-w-[1320px] rounded-2xl border border-white/10 bg-[#050505]/88 p-3 backdrop-blur-xl">
+          <div className="mx-auto w-full max-w-[1320px] rounded-2xl border border-white/12 bg-[#15212B]/88 p-3 backdrop-blur-xl">
             <nav className="grid gap-1">
               {navItems.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="rounded-xl px-3 py-2 text-sm text-[#F5F5F5]/88 hover:bg-[#151515]/80"
+                  className="rounded-xl px-3 py-2 text-sm text-[#F2F6F8]/88 hover:bg-[#24313B]/76"
                 >
                   {item.label}
                 </Link>
@@ -171,9 +177,9 @@ export default function Navbar() {
 
             <div className="mt-3">
               <Link
-                href="tel:+37496536006"
+                href="tel:+37441910911"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="inline-flex w-full items-center justify-center rounded-xl border border-white/14 bg-[#151515]/75 px-4 py-2.5 text-[11px] tracking-[0.18em] text-[#F5F5F5]"
+                className="inline-flex w-full items-center justify-center rounded-xl border border-white/16 bg-[#24313B]/76 px-4 py-2.5 text-[11px] tracking-[0.18em] text-[#F2F6F8]"
               >
                 {content.actions.orderCoffee}
               </Link>

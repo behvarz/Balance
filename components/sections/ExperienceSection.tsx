@@ -35,13 +35,13 @@ export default function ExperienceSection() {
                 delay: index * 0.07,
                 ease: [0.2, 0.8, 0.2, 1],
               }}
-              className="gold-glow rounded-3xl border border-white/8 bg-[#151515]/62 p-7 md:p-8"
+              className="gold-glow rounded-3xl border border-white/10 bg-[#24313B]/64 p-7 md:p-8"
             >
-              <p className="text-xs tracking-[0.2em] text-[#D89B47] uppercase">
+              <p className="text-xs tracking-[0.2em] text-[#E3A858] uppercase">
                 0{index + 1}
               </p>
-              <h3 className="mt-4 font-display text-3xl text-[#F5F5F5]">{item.title}</h3>
-              <p className="mt-4 text-base leading-relaxed text-[#A1A1A1]">
+              <h3 className="mt-4 font-display text-3xl text-[#F2F6F8]">{item.title}</h3>
+              <p className="mt-4 text-base leading-relaxed text-[#B8C2C8]">
                 {item.description}
               </p>
             </motion.article>

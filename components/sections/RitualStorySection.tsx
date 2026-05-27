@@ -31,8 +31,8 @@ export default function RitualStorySection() {
           viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.9, delay: 0.1, ease: [0.2, 0.8, 0.2, 1] }}
         >
-          <div className="gold-glow rounded-[1.5rem] border border-white/8 bg-[linear-gradient(160deg,rgba(21,21,21,0.9),rgba(14,14,14,0.96))] p-8 md:p-12">
-            <div className="absolute -top-5 right-9 hidden rounded-full border border-white/12 bg-[#050505]/85 px-5 py-2 text-[10px] tracking-[0.22em] text-[#D89B47] uppercase md:block">
+          <div className="gold-glow rounded-[1.5rem] border border-white/10 bg-[linear-gradient(160deg,rgba(31,43,53,0.86),rgba(24,34,43,0.92))] p-8 md:p-12">
+            <div className="absolute -top-5 right-9 hidden rounded-full border border-white/14 bg-[#18232C]/84 px-5 py-2 text-[10px] tracking-[0.2em] text-[#E3A858] uppercase md:block">
               {content.ritual.location}
             </div>
 
@@ -40,7 +40,7 @@ export default function RitualStorySection() {
               {content.ritual.paragraphs.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-lg leading-relaxed text-[#A1A1A1] md:text-xl md:leading-relaxed"
+                  className="text-lg leading-relaxed text-[#B8C2C8] md:text-xl md:leading-relaxed"
                 >
                   {paragraph}
                 </p>

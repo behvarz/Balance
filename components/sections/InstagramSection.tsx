@@ -29,7 +29,7 @@ export default function InstagramSection() {
             sizes="100vw"
             className="object-cover blur-[2px]"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,5,5,0.1)_0%,rgba(5,5,5,0.84)_85%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,21,27,0.08)_0%,rgba(15,21,27,0.7)_85%)]" />
         </div>
       </div>
 
@@ -60,7 +60,7 @@ export default function InstagramSection() {
                 delay: index * 0.05,
               }}
               whileHover={{ y: -4, scale: 1.01 }}
-              className="group relative overflow-hidden rounded-2xl border border-white/10"
+              className="group relative overflow-hidden rounded-2xl border border-white/12"
             >
               <div className="relative h-44 md:h-56">
                 <Image
@@ -74,10 +74,10 @@ export default function InstagramSection() {
                   className={`absolute inset-0 bg-gradient-to-br ${shot.toneClassName} opacity-32`}
                 />
               </div>
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(5,5,5,0.72)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_55%,rgba(15,21,27,0.68)_100%)]" />
               <div className="absolute right-4 bottom-4 left-4">
-                <h3 className="font-display text-2xl text-[#F5F5F5]">{shot.title}</h3>
-                <p className="mt-1 text-xs tracking-[0.12em] text-[#A1A1A1] uppercase">
+                <h3 className="font-display text-2xl text-[#F2F6F8]">{shot.title}</h3>
+                <p className="mt-1 text-xs tracking-[0.12em] text-[#B8C2C8] uppercase">
                   {shot.caption}
                 </p>
               </div>
@@ -93,10 +93,10 @@ export default function InstagramSection() {
           className="mt-10 flex justify-center"
         >
           <Link
-            href="https://www.instagram.com/balance.wellness"
+            href="https://www.instagram.com/balancesportcomplex/"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center rounded-full border border-white/12 bg-[#151515]/65 px-6 py-3 text-xs tracking-[0.22em] text-[#F5F5F5] uppercase hover:-translate-y-0.5 hover:border-[#1FA15A]/55 hover:bg-[#0E6B3D]/22"
+            className="inline-flex items-center rounded-full border border-white/16 bg-[#24313B]/72 px-6 py-3 text-xs tracking-[0.22em] text-[#F2F6F8] uppercase hover:-translate-y-0.5 hover:border-[#28C279]/56 hover:bg-[#14945D]/24"
           >
             {content.actions.followRitual}
           </Link>

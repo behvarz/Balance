@@ -20,7 +20,7 @@ export default function CollectionSection() {
             sizes="430px"
             className="object-cover blur-[2px]"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(5,5,5,0.12)_0%,rgba(5,5,5,0.9)_76%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(15,21,27,0.08)_0%,rgba(15,21,27,0.74)_76%)]" />
         </div>
       </div>
 

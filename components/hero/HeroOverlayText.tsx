@@ -68,7 +68,7 @@ export default function HeroOverlayText({
           </span>
           <Link
             href="#collection"
-            className="pointer-events-auto inline-flex rounded-full border border-[rgba(255,255,255,0.14)] bg-[#151515]/72 px-6 py-3 text-xs tracking-[0.24em] text-[#F5F5F5] uppercase hover:-translate-y-0.5 hover:border-[#1FA15A]/60 hover:bg-[#0E6B3D]/22"
+            className="pointer-events-auto inline-flex rounded-full border border-[rgba(255,255,255,0.2)] bg-[#24313B]/74 px-6 py-3 text-xs tracking-[0.24em] text-[#F2F6F8] uppercase hover:-translate-y-0.5 hover:border-[#28C279]/68 hover:bg-[#14945D]/22"
           >
             {content.actions.enter}
           </Link>
@@ -78,14 +78,14 @@ export default function HeroOverlayText({
           className="absolute flex flex-col items-center gap-2 md:bottom-10"
           style={{
             opacity: isReady ? hintOpacity : 0,
-            bottom: "calc(env(safe-area-inset-bottom, 0px) + 8rem)",
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 6.6rem)",
           }}
         >
-          <span className="text-[11px] tracking-[0.18em] text-[#A1A1A1] uppercase">
+          <span className="text-[11px] tracking-[0.18em] text-[#B8C2C8] uppercase">
             {content.hero.scrollHint}
           </span>
-          <div className="relative h-9 w-5 rounded-full border border-[#1FA15A]/55">
-            <span className="absolute left-1/2 top-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#1FA15A] animate-[scrollDot_1.4s_ease-in-out_infinite]" />
+          <div className="relative h-9 w-5 rounded-full border border-[#28C279]/55">
+            <span className="absolute left-1/2 top-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-[#28C279] animate-[scrollDot_1.4s_ease-in-out_infinite]" />
           </div>
         </div>
       </div>

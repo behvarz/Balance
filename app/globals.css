@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --bg-main: #050505;
-  --bg-secondary: #0e0e0e;
-  --surface: #151515;
-  --brand-green: #0e6b3d;
-  --accent-green: #1fa15a;
-  --luxury-amber: #b67a2d;
-  --soft-amber: #d89b47;
-  --text-primary: #f5f5f5;
-  --text-secondary: #a1a1a1;
-  --text-muted: #6b6b6b;
+  --bg-main: #0f151b;
+  --bg-secondary: #162029;
+  --surface: #1d2933;
+  --brand-green: #14945d;
+  --accent-green: #28c279;
+  --luxury-amber: #cc8e3f;
+  --soft-amber: #e3a858;
+  --text-primary: #f2f6f8;
+  --text-secondary: #b8c2c8;
+  --text-muted: #7f8b93;
   --glass-border: rgb(255 255 255 / 8%);
-  --green-glow: rgb(31 161 90 / 25%);
-  --amber-glow: rgb(214 155 71 / 18%);
+  --green-glow: rgb(40 194 121 / 24%);
+  --amber-glow: rgb(227 168 88 / 18%);
 }
 
 @theme inline {
   --font-sans: var(--font-manrope);
   --font-body: var(--font-manrope);
-  --font-display: var(--font-cormorant);
+  --font-display: var(--font-montserrat);
 }
 
 body {
   background:
-    radial-gradient(circle at 14% 14%, rgb(31 161 90 / 14%), transparent 42%),
-    radial-gradient(circle at 84% 16%, rgb(214 155 71 / 12%), transparent 36%),
-    radial-gradient(circle at 72% 84%, rgb(31 161 90 / 8%), transparent 42%),
-    linear-gradient(155deg, #050505 0%, #0a0a0a 46%, #050505 100%);
+    radial-gradient(circle at 12% 16%, rgb(40 194 121 / 14%), transparent 42%),
+    radial-gradient(circle at 86% 14%, rgb(227 168 88 / 12%), transparent 34%),
+    radial-gradient(circle at 72% 84%, rgb(79 144 255 / 10%), transparent 44%),
+    linear-gradient(155deg, #0f151b 0%, #162029 48%, #111820 100%);
   color: var(--text-primary);
   font-family: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
@@ -48,7 +48,7 @@ html {
 
 ::selection {
   color: var(--bg-main);
-  background: rgb(214 155 71 / 80%);
+  background: rgb(227 168 88 / 80%);
 }
 
 a,
@@ -66,7 +66,7 @@ button {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  opacity: 0.16;
+  opacity: 0.1;
   mix-blend-mode: soft-light;
   background-image: radial-gradient(rgb(245 245 245 / 22%) 0.7px, transparent 0.7px);
   background-size: 2px 2px;
@@ -75,17 +75,17 @@ button {
 .gold-glow {
   box-shadow:
     0 0 0 1px var(--glass-border),
-    0 18px 46px rgb(0 0 0 / 52%),
-    0 0 44px var(--green-glow),
-    0 0 58px var(--amber-glow);
+    0 12px 34px rgb(0 0 0 / 34%),
+    0 0 34px var(--green-glow),
+    0 0 42px var(--amber-glow);
 }
 
 .glass-surface {
   border: 1px solid var(--glass-border);
   background: linear-gradient(
     160deg,
-    rgb(21 21 21 / 92%),
-    rgb(14 14 14 / 86%)
+    rgb(31 43 53 / 86%),
+    rgb(24 34 43 / 82%)
   );
   backdrop-filter: blur(18px);
 }
@@ -95,9 +95,9 @@ button {
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(31 161 90 / 28%),
-    rgb(214 155 71 / 56%),
-    rgb(31 161 90 / 28%),
+    rgb(40 194 121 / 34%),
+    rgb(227 168 88 / 52%),
+    rgb(40 194 121 / 34%),
     transparent
   );
 }

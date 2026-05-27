@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 function SectionFallback() {
   return (
     <div className="mx-auto w-full max-w-[1320px] px-6 py-24 md:px-10 lg:px-16">
-      <div className="h-44 animate-pulse rounded-3xl border border-white/8 bg-[#151515]/60" />
+      <div className="h-44 animate-pulse rounded-3xl border border-white/10 bg-[#24313B]/55" />
     </div>
   );
 }

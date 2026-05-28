@@ -6,6 +6,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function FinalCTA() {
   const { content, language } = useLanguage();
+  const isCompactLocale = language !== "en";
   const adminLabel =
     language === "am"
       ? "Ադմինիստրացիա"
@@ -39,13 +40,17 @@ export default function FinalCTA() {
             <div className="grid gap-3 lg:col-span-5 lg:grid-cols-2">
               <Link
                 href="tel:+37441910911"
-                className="inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] tracking-[0.16em] text-[#F2F6F8] uppercase hover:border-[#28C279]/62 hover:bg-[#14945D]/24"
+                className={`inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] text-[#F2F6F8] hover:border-[#28C279]/62 hover:bg-[#14945D]/24 ${
+                  isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.16em] uppercase"
+                }`}
               >
                 {content.actions.orderCoffee}
               </Link>
               <Link
                 href="tel:+37441910916"
-                className="inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] tracking-[0.16em] text-[#F2F6F8] uppercase hover:border-[#28C279]/62 hover:bg-[#14945D]/24"
+                className={`inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] text-[#F2F6F8] hover:border-[#28C279]/62 hover:bg-[#14945D]/24 ${
+                  isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.16em] uppercase"
+                }`}
               >
                 {adminLabel}
               </Link>
@@ -53,7 +58,9 @@ export default function FinalCTA() {
                 href="https://www.instagram.com/balancesportcomplex/"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] tracking-[0.16em] text-[#F2F6F8] uppercase hover:border-[#28C279]/62 hover:bg-[#14945D]/24"
+                className={`inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] text-[#F2F6F8] hover:border-[#28C279]/62 hover:bg-[#14945D]/24 ${
+                  isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.16em] uppercase"
+                }`}
               >
                 Instagram
               </Link>
@@ -61,7 +68,9 @@ export default function FinalCTA() {
                 href="https://www.facebook.com/p/Balance-Sport-Complex-61556143100729/"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] tracking-[0.16em] text-[#F2F6F8] uppercase hover:border-[#28C279]/62 hover:bg-[#14945D]/24"
+                className={`inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] text-[#F2F6F8] hover:border-[#28C279]/62 hover:bg-[#14945D]/24 ${
+                  isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.16em] uppercase"
+                }`}
               >
                 Facebook
               </Link>

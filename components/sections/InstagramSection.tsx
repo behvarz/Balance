@@ -15,7 +15,8 @@ const instagramImages = [
 ];
 
 export default function InstagramSection() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const isCompactLocale = language !== "en";
 
   return (
     <section className="relative py-20 md:py-28">
@@ -29,7 +30,13 @@ export default function InstagramSection() {
         >
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <p className="text-[11px] tracking-[0.26em] text-[#E3A858] uppercase">{content.instagram.eyebrow}</p>
+              <p
+                className={`text-[11px] text-[#E3A858] ${
+                  isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.26em] uppercase"
+                }`}
+              >
+                {content.instagram.eyebrow}
+              </p>
               <h2 className="mt-4 font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">{content.instagram.title}</h2>
               <p className="mt-5 text-sm leading-relaxed text-[#C0CBD2] md:text-base">{content.instagram.description}</p>
             </div>
@@ -82,8 +89,12 @@ export default function InstagramSection() {
                   <div className={`absolute inset-0 bg-gradient-to-br ${shot.toneClassName} opacity-28`} />
                   <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_46%,rgba(15,22,30,0.84)_100%)]" />
                   <div className="absolute right-3 bottom-3 left-3">
-                    <h3 className="font-display text-lg text-[#F2F6F8]">{shot.title}</h3>
-                    <p className="mt-1 text-[11px] leading-relaxed text-[#C0CBD2]">{shot.caption}</p>
+                    <h3 className="break-words font-display text-base text-[#F2F6F8] md:text-lg [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
+                      {shot.title}
+                    </h3>
+                    <p className="mt-1 break-words text-[11px] leading-relaxed text-[#C0CBD2] [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:2] overflow-hidden">
+                      {shot.caption}
+                    </p>
                   </div>
                 </motion.article>
               );
@@ -95,7 +106,9 @@ export default function InstagramSection() {
               href="https://www.instagram.com/balancesportcomplex/"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center rounded-full border border-white/16 bg-[#243542]/74 px-6 py-3 text-[11px] tracking-[0.2em] text-[#F2F6F8] uppercase hover:-translate-y-0.5 hover:border-[#28C279]/56 hover:bg-[#14945D]/24"
+              className={`inline-flex max-w-full items-center rounded-full border border-white/16 bg-[#243542]/74 px-6 py-3 text-[11px] text-[#F2F6F8] hover:-translate-y-0.5 hover:border-[#28C279]/56 hover:bg-[#14945D]/24 ${
+                isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.2em] uppercase"
+              }`}
             >
               {content.actions.followRitual}
             </Link>

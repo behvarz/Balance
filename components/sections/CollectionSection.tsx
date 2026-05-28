@@ -89,7 +89,7 @@ export default function CollectionSection() {
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,30,0)_42%,rgba(15,22,30,0.86)_100%)]" />
               <div className="absolute right-5 bottom-5 left-5">
                 <p className="text-[10px] tracking-[0.2em] text-[#E3A858] uppercase">Balance Sport Complex</p>
-                <h3 className="mt-2 font-display text-2xl text-[#F2F6F8] md:text-3xl">
+                <h3 className="mt-2 break-words font-display text-lg leading-snug text-[#F2F6F8] md:text-2xl">
                   {locale.disciplines}
                 </h3>
               </div>

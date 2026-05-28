@@ -48,11 +48,11 @@ export default function ScrollHero() {
       const holdRatio = 1 / 7;
       const holdStart = 1 - holdRatio;
       const scrubState = { currentTime: 0 };
-      const minDelta = isDesktop ? 1 / 28 : 1 / 40;
-      const tweenDuration = isDesktop ? 0.16 : 0.22;
+      const minDelta = isDesktop ? 1 / 28 : 1 / 42;
+      const tweenDuration = isDesktop ? 0.16 : 0.2;
 
       const applyCurrentTime = () => {
-        if (video.readyState < 2 || video.seeking) {
+        if (video.readyState < 1) {
           return;
         }
 
@@ -75,6 +75,12 @@ export default function ScrollHero() {
           const mappedProgress =
             nextProgress < holdStart ? nextProgress / holdStart : 1;
           const targetTime = mappedProgress * maxTime;
+
+          if (!isDesktop) {
+            scrubState.currentTime = targetTime;
+            applyCurrentTime();
+            return;
+          }
 
           scrubTween?.kill();
           scrubTween = gsap.to(scrubState, {

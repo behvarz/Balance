@@ -8,6 +8,7 @@ import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function Navbar() {
   const { content, language, setLanguage } = useLanguage();
+  const isCompactLocale = language !== "en";
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false);
@@ -61,12 +62,17 @@ export default function Navbar() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-6 text-[11px] tracking-[0.16em] lg:flex">
+        <nav
+          className={`hidden items-center lg:flex ${
+            isCompactLocale ? "gap-4 text-[10px] tracking-[0.06em]" : "gap-6 text-[11px] tracking-[0.16em]"
+          }`}
+        >
           {navItems.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="text-[#F2F6F8]/84 transition hover:text-[#28C279]"
+              className="max-w-[11rem] truncate text-[#F2F6F8]/84 transition hover:text-[#28C279]"
+              title={item.label}
             >
               {item.label}
             </Link>

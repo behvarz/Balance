@@ -30,7 +30,8 @@ export default function HeroOverlayText({
   progress,
   isReady,
 }: HeroOverlayTextProps) {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const isCompactLocale = language !== "en";
   const ctaOpacity =
     progress > 0.82 ? Math.min((progress - 0.82) / 0.08, 1) : 0;
   const hintOpacity =
@@ -46,7 +47,9 @@ export default function HeroOverlayText({
           return (
             <p
               key={moment.text}
-              className="absolute max-w-2xl font-body text-base leading-snug font-light tracking-[0.1em] text-[#F5F5F5] md:text-xl lg:text-2xl"
+              className={`absolute max-w-[min(88vw,42rem)] break-words font-body text-base leading-snug font-light text-[#F5F5F5] md:text-xl lg:text-2xl ${
+                isCompactLocale ? "tracking-[0.03em]" : "tracking-[0.1em]"
+              }`}
               style={{
                 opacity: momentOpacity,
                 transform: `translateY(calc(${(1 - phaseOpacity) * 14}px + 20vh))`,
@@ -63,12 +66,18 @@ export default function HeroOverlayText({
             opacity: ctaOpacity,
           }}
         >
-          <span className="font-body text-[11px] tracking-[0.24em] text-[#1FA15A] uppercase md:text-xs">
+          <span
+            className={`font-body text-[11px] text-[#1FA15A] md:text-xs ${
+              isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.24em] uppercase"
+            }`}
+          >
             {content.hero.exploreCollection}
           </span>
           <Link
             href="#collection"
-            className="pointer-events-auto inline-flex rounded-full border border-[rgba(255,255,255,0.2)] bg-[#24313B]/74 px-5 py-2.5 text-[10px] tracking-[0.24em] text-[#F2F6F8] uppercase hover:-translate-y-0.5 hover:border-[#28C279]/68 hover:bg-[#14945D]/22"
+            className={`pointer-events-auto inline-flex max-w-full items-center justify-center rounded-full border border-[rgba(255,255,255,0.2)] bg-[#24313B]/74 px-5 py-2.5 text-[10px] text-[#F2F6F8] hover:-translate-y-0.5 hover:border-[#28C279]/68 hover:bg-[#14945D]/22 ${
+              isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.24em] uppercase"
+            }`}
           >
             {content.actions.enter}
           </Link>
@@ -81,7 +90,11 @@ export default function HeroOverlayText({
             bottom: "calc(env(safe-area-inset-bottom, 0px) + 4.9rem)",
           }}
         >
-          <span className="text-[11px] tracking-[0.18em] text-[#B8C2C8] uppercase">
+          <span
+            className={`max-w-[84vw] text-center text-[11px] text-[#B8C2C8] ${
+              isCompactLocale ? "tracking-[0.05em]" : "tracking-[0.18em] uppercase"
+            }`}
+          >
             {content.hero.scrollHint}
           </span>
           <div className="relative h-9 w-5 rounded-full border border-[#28C279]/55">

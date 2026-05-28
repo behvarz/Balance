@@ -30,6 +30,7 @@ const localizedSection = {
 
 export default function CollectionSection() {
   const { content, language } = useLanguage();
+  const isCompactLocale = language !== "en";
   const locale = localizedSection[language];
   const sectionStats = [
     { label: "07:00-23:00", note: locale.week },
@@ -49,25 +50,33 @@ export default function CollectionSection() {
         >
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-[11px] tracking-[0.26em] text-[#E3A858] uppercase">
+              <p
+                className={`text-[11px] text-[#E3A858] ${
+                  isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.26em] uppercase"
+                }`}
+              >
                 {content.collection.eyebrow}
               </p>
-              <h2 className="mt-4 font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">
+              <h2
+                className={`mt-4 break-words font-display leading-tight text-[#F2F6F8] ${
+                  isCompactLocale ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"
+                }`}
+              >
                 {content.collection.title}
               </h2>
-              <p className="mt-5 text-sm leading-relaxed text-[#C0CBD2] md:text-base">
+              <p className="mt-5 break-words text-sm leading-relaxed text-[#C0CBD2] md:text-base">
                 {content.collection.description}
               </p>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 self-start lg:self-auto">
+            <div className="grid grid-cols-1 gap-2 self-start sm:grid-cols-3 lg:self-auto">
               {sectionStats.map((stat) => (
                 <div
                   key={stat.label}
                   className="rounded-xl border border-white/14 bg-[#21313D]/70 px-3 py-2 text-center"
                 >
-                  <p className="text-xs font-semibold text-[#F2F6F8]">{stat.label}</p>
-                  <p className="mt-1 text-[10px] tracking-[0.12em] text-[#AFC0CA] uppercase">
+                  <p className="break-words text-[11px] font-semibold leading-tight text-[#F2F6F8]">{stat.label}</p>
+                  <p className="mt-1 break-words text-[10px] tracking-[0.08em] text-[#AFC0CA]">
                     {stat.note}
                   </p>
                 </div>
@@ -107,7 +116,7 @@ export default function CollectionSection() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[11px] tracking-[0.18em] text-[#B7C5CD] uppercase">{content.actions.from}</p>
+                      <p className={`text-[11px] text-[#B7C5CD] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.18em] uppercase"}`}>{content.actions.from}</p>
                       <p className="mt-1 font-display text-3xl text-[#28C279]">{product.price}</p>
                     </div>
                     <span className="rounded-full border border-white/14 bg-[#223540]/75 px-3 py-1 text-[10px] tracking-[0.12em] text-[#DDE5EA] uppercase">
@@ -115,9 +124,9 @@ export default function CollectionSection() {
                     </span>
                   </div>
 
-                  <h3 className="mt-4 font-display text-2xl text-[#F2F6F8]">{product.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[#C0CBD2]">{product.description}</p>
-                  <p className="mt-3 text-[11px] tracking-[0.08em] text-[#9AB1BE]">{product.tastingNote}</p>
+                  <h3 className="mt-4 break-words font-display text-xl text-[#F2F6F8] md:text-2xl">{product.name}</h3>
+                  <p className="mt-2 break-words text-sm leading-relaxed text-[#C0CBD2]">{product.description}</p>
+                  <p className="mt-3 break-words text-[11px] tracking-[0.08em] text-[#9AB1BE]">{product.tastingNote}</p>
                 </motion.article>
               ))}
             </div>

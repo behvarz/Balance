@@ -32,6 +32,10 @@ export default function HeroOverlayText({
 }: HeroOverlayTextProps) {
   const { content, language } = useLanguage();
   const isCompactLocale = language !== "en";
+  const titleSizeClass = isCompactLocale
+    ? "text-sm md:text-lg lg:text-xl"
+    : "text-base md:text-xl lg:text-2xl";
+  const ctaTopClass = isCompactLocale ? "top-[70%]" : "top-[68%]";
   const ctaOpacity =
     progress > 0.82 ? Math.min((progress - 0.82) / 0.08, 1) : 0;
   const hintOpacity =
@@ -47,7 +51,7 @@ export default function HeroOverlayText({
           return (
             <p
               key={moment.text}
-              className={`absolute max-w-[min(88vw,42rem)] break-words font-body text-base leading-snug font-light text-[#F5F5F5] md:text-xl lg:text-2xl ${
+              className={`absolute max-w-[min(90vw,40rem)] break-words font-body leading-snug font-light text-[#F5F5F5] ${titleSizeClass} ${
                 isCompactLocale ? "tracking-[0.03em]" : "tracking-[0.1em]"
               }`}
               style={{
@@ -61,7 +65,7 @@ export default function HeroOverlayText({
         })}
 
         <div
-          className="absolute top-[68%] left-1/2 flex w-full max-w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 px-6"
+          className={`absolute left-1/2 flex w-full max-w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 px-6 ${ctaTopClass}`}
           style={{
             opacity: ctaOpacity,
           }}

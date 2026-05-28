@@ -27,46 +27,94 @@ export default function ScrollHero() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const shouldUseFallback = prefersReducedMotion;
-    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
     setFallbackMode(shouldUseFallback);
 
-    let revealTween: gsap.core.Tween | null = null;
-    let scrubTween: gsap.core.Tween | null = null;
+    let updateTween: gsap.core.Tween | null = null;
     let scrubTrigger: ScrollTrigger | null = null;
+    let autoplayInitiated = false;
+    let animationFrameId = 0;
+
+    const autoplayVideo = () => {
+      if (autoplayInitiated && !video.paused) {
+        return;
+      }
+
+      autoplayInitiated = true;
+      video.loop = true;
+      video.muted = true;
+      video.playbackRate = 0.9;
+      video.setAttribute("autoplay", "");
+
+      const playPromise = video.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          autoplayInitiated = false;
+        });
+      }
+    };
 
     const setupScrub = () => {
       if (!Number.isFinite(video.duration) || video.duration <= 0.1) {
         return;
       }
 
+      const state = {
+        targetTime: 0,
+        smoothTime: 0,
+      };
+
       video.pause();
       video.loop = false;
       video.currentTime = 0;
 
-      const maxTime = Math.max(video.duration - 0.08, 0);
-      const holdRatio = 1 / 7;
+      const maxTime = Math.max(video.duration - 0.06, 0);
+      const smoothFactor = 0.18;
+      const holdRatio = 1 / 6;
       const holdStart = 1 - holdRatio;
-      const scrubState = { currentTime: 0 };
-      const minDelta = isDesktop ? 1 / 28 : 1 / 42;
-      const tweenDuration = isDesktop ? 0.16 : 0.2;
+      const targetFrameInterval = 1000 / 24;
+      let lastSeekTimestamp = 0;
+      let pendingSeekFrames = 0;
 
-      const applyCurrentTime = () => {
-        if (video.readyState < 1) {
+      const tick = (timestamp: number) => {
+        state.smoothTime += (state.targetTime - state.smoothTime) * smoothFactor;
+
+        if (
+          video.readyState >= 2 &&
+          timestamp - lastSeekTimestamp >= targetFrameInterval &&
+          !video.seeking
+        ) {
+          const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
+
+          if (Math.abs(video.currentTime - nextTime) > 0.016) {
+            video.currentTime = nextTime;
+            lastSeekTimestamp = timestamp;
+          }
+        }
+
+        if (video.seeking && Math.abs(video.currentTime - state.targetTime) > 0.08) {
+          pendingSeekFrames += 1;
+        } else {
+          pendingSeekFrames = Math.max(0, pendingSeekFrames - 2);
+        }
+
+        if (pendingSeekFrames > 80) {
+          scrubTrigger?.kill();
+          setFallbackMode(true);
+          autoplayVideo();
           return;
         }
 
-        const nextTime = Math.min(maxTime, Math.max(0, scrubState.currentTime));
-        if (Math.abs(video.currentTime - nextTime) > minDelta) {
-          video.currentTime = nextTime;
-        }
+        animationFrameId = window.requestAnimationFrame(tick);
       };
+
+      animationFrameId = window.requestAnimationFrame(tick);
 
       scrubTrigger = ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: isDesktop ? 0.95 : 0.7,
+        scrub: 0.4,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const nextProgress = gsap.utils.clamp(0, 1, self.progress);
@@ -74,26 +122,11 @@ export default function ScrollHero() {
 
           const mappedProgress =
             nextProgress < holdStart ? nextProgress / holdStart : 1;
-          const targetTime = mappedProgress * maxTime;
-
-          if (!isDesktop) {
-            scrubState.currentTime = targetTime;
-            applyCurrentTime();
-            return;
-          }
-
-          scrubTween?.kill();
-          scrubTween = gsap.to(scrubState, {
-            currentTime: targetTime,
-            duration: tweenDuration,
-            ease: "none",
-            overwrite: true,
-            onUpdate: applyCurrentTime,
-          });
+          state.targetTime = mappedProgress * maxTime;
         },
       });
 
-      revealTween = gsap.to(video, {
+      updateTween = gsap.to(video, {
         opacity: 1,
         duration: 0.4,
         ease: "power2.out",
@@ -103,16 +136,13 @@ export default function ScrollHero() {
     const onLoadedMetadata = () => {
       setIsReady(true);
       video.preload = "auto";
-      video.pause();
-      video.loop = false;
-      video.currentTime = 0;
 
       if (shouldUseFallback) {
-        return;
+        autoplayVideo();
+      } else {
+        void video.play().then(() => video.pause()).catch(() => null);
+        setupScrub();
       }
-
-      setupScrub();
-      ScrollTrigger.refresh();
     };
 
     if (video.readyState >= 1) {
@@ -121,16 +151,49 @@ export default function ScrollHero() {
       video.addEventListener("loadedmetadata", onLoadedMetadata, { once: true });
     }
 
+    const onVisibilityChange = () => {
+      if (!document.hidden && shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    const onCanPlay = () => {
+      if (shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    const onFirstInteraction = () => {
+      if (shouldUseFallback) {
+        autoplayVideo();
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    video.addEventListener("canplay", onCanPlay);
+    window.addEventListener("touchstart", onFirstInteraction, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("pointerdown", onFirstInteraction, {
+      passive: true,
+      once: true,
+    });
+
     return () => {
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
-      scrubTween?.kill();
-      revealTween?.kill();
+      video.removeEventListener("canplay", onCanPlay);
+      window.removeEventListener("touchstart", onFirstInteraction);
+      window.removeEventListener("pointerdown", onFirstInteraction);
+      window.cancelAnimationFrame(animationFrameId);
+      updateTween?.kill();
       scrubTrigger?.kill();
     };
   }, []);
 
   return (
-    <section id="home" ref={sectionRef} className="relative h-[560vh]">
+    <section id="home" ref={sectionRef} className="relative h-[400vh]">
       <div className="sticky top-0 h-screen overflow-hidden">
         <video
           ref={videoRef}
@@ -138,7 +201,7 @@ export default function ScrollHero() {
           src="/balance-hero.mp4"
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
         />
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,21,27,0.32)_0%,rgba(15,21,27,0.1)_32%,rgba(15,21,27,0.68)_100%)]" />

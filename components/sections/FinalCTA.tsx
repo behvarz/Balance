@@ -29,10 +29,10 @@ export default function FinalCTA() {
 
           <div className="relative grid gap-7 lg:grid-cols-12 lg:items-end">
             <div className="lg:col-span-7">
-              <h2 className="font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">
+              <h2 className={`break-words font-display leading-tight text-[#F2F6F8] ${isCompactLocale ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
                 {content.finalCta.title}
               </h2>
-              <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#C0CBD2] md:text-base">
+              <p className="mt-5 max-w-3xl break-words text-sm leading-relaxed text-[#C0CBD2] md:text-base">
                 {content.finalCta.subtitle}
               </p>
             </div>

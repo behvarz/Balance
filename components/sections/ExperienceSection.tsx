@@ -30,6 +30,7 @@ const localeByLanguage = {
 
 export default function ExperienceSection() {
   const { content, language } = useLanguage();
+  const isCompactLocale = language !== "en";
   const t = localeByLanguage[language];
 
   return (
@@ -44,10 +45,10 @@ export default function ExperienceSection() {
         >
           <div className="grid gap-6 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-7">
-              <p className="text-[11px] tracking-[0.26em] text-[#E3A858] uppercase">
+              <p className={`text-[11px] text-[#E3A858] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.26em] uppercase"}`}>
                 {content.experience.eyebrow}
               </p>
-              <h2 className="mt-4 max-w-3xl font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">
+              <h2 className={`mt-4 max-w-3xl break-words font-display leading-tight text-[#F2F6F8] ${isCompactLocale ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
                 {content.experience.title}
               </h2>
 
@@ -66,8 +67,8 @@ export default function ExperienceSection() {
                         0{index + 1}
                       </span>
                       <div>
-                        <h3 className="font-display text-xl text-[#F2F6F8]">{item.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-[#C0CBD2]">{item.description}</p>
+                        <h3 className="break-words font-display text-xl text-[#F2F6F8]">{item.title}</h3>
+                        <p className="mt-2 break-words text-sm leading-relaxed text-[#C0CBD2]">{item.description}</p>
                       </div>
                     </div>
                   </motion.article>
@@ -88,15 +89,15 @@ export default function ExperienceSection() {
                 </div>
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,30,0.1)_30%,rgba(15,22,30,0.86)_100%)]" />
                 <div className="absolute right-4 bottom-4 left-4">
-                  <p className="text-[10px] tracking-[0.2em] text-[#E3A858] uppercase">{t.recoverySystem}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">
+                  <p className={`text-[10px] text-[#E3A858] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.2em] uppercase"}`}>{t.recoverySystem}</p>
+                  <p className="mt-2 break-words text-sm leading-relaxed text-[#F2F6F8]">
                     {t.recoveryText}
                   </p>
                 </div>
               </article>
 
               <div className="rounded-2xl border border-white/12 bg-[#20303C]/70 p-4">
-                <p className="text-[11px] tracking-[0.16em] text-[#AFC0CA] uppercase">{t.directLines}</p>
+                <p className={`text-[11px] text-[#AFC0CA] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.16em] uppercase"}`}>{t.directLines}</p>
                 <p className="mt-2 text-sm text-[#F2F6F8]">{t.membership}: 041910911</p>
                 <p className="text-sm text-[#F2F6F8]">{t.administration}: 041910916</p>
               </div>

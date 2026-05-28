@@ -45,6 +45,7 @@ const localeByLanguage = {
 
 export default function RitualStorySection() {
   const { content, language } = useLanguage();
+  const isCompactLocale = language !== "en";
   const t = localeByLanguage[language];
 
   return (
@@ -58,18 +59,24 @@ export default function RitualStorySection() {
           className="grid gap-5 lg:grid-cols-12"
         >
           <article className="section-shell overflow-hidden p-6 md:p-9 lg:col-span-8">
-            <p className="text-[11px] tracking-[0.26em] text-[#E3A858] uppercase">{content.ritual.eyebrow}</p>
-            <h2 className="mt-4 max-w-4xl font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">
+            <p
+              className={`text-[11px] text-[#E3A858] ${
+                isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.26em] uppercase"
+              }`}
+            >
+              {content.ritual.eyebrow}
+            </p>
+            <h2 className={`mt-4 max-w-4xl break-words font-display leading-tight text-[#F2F6F8] ${isCompactLocale ? "text-2xl md:text-4xl" : "text-3xl md:text-5xl"}`}>
               {content.ritual.title}
             </h2>
-            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#C0CBD2] md:text-base">
+            <p className="mt-5 max-w-3xl break-words text-sm leading-relaxed text-[#C0CBD2] md:text-base">
               {content.ritual.description}
             </p>
 
             <div className="mt-8 grid gap-4 md:grid-cols-3">
               {content.ritual.paragraphs.map((paragraph) => (
                 <div key={paragraph} className="rounded-xl border border-white/12 bg-[#1F2F3A]/72 p-4">
-                  <p className="text-sm leading-relaxed text-[#CBD4DA]">{paragraph}</p>
+                  <p className="break-words text-sm leading-relaxed text-[#CBD4DA]">{paragraph}</p>
                 </div>
               ))}
             </div>
@@ -86,10 +93,10 @@ export default function RitualStorySection() {
               </div>
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,30,0.1)_0%,rgba(15,22,30,0.85)_100%)]" />
               <div className="absolute right-4 bottom-4 left-4 flex items-end justify-between gap-4">
-                <p className="max-w-xl text-sm leading-relaxed text-[#F2F6F8]">
+                <p className="max-w-xl break-words text-sm leading-relaxed text-[#F2F6F8]">
                   {content.ritual.location}
                 </p>
-                <span className="rounded-full border border-white/16 bg-[#223744]/80 px-3 py-1 text-[10px] tracking-[0.16em] text-[#E3A858] uppercase">
+                <span className={`rounded-full border border-white/16 bg-[#223744]/80 px-3 py-1 text-[10px] text-[#E3A858] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.16em] uppercase"}`}>
                   {t.liveEnergy}
                 </span>
               </div>
@@ -98,25 +105,25 @@ export default function RitualStorySection() {
 
           <aside className="section-shell flex flex-col gap-4 p-6 md:p-8 lg:col-span-4">
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.address}</p>
+              <p className={`text-[11px] text-[#AFC0CA] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.18em] uppercase"}`}>{t.address}</p>
               <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Dzorap 40/2, Yerevan, Armenia 0002</p>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.hours}</p>
+              <p className={`text-[11px] text-[#AFC0CA] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.18em] uppercase"}`}>{t.hours}</p>
               <p className="mt-2 text-sm text-[#F2F6F8]">{t.week}</p>
               <p className="text-sm text-[#F2F6F8]">{t.sunday}</p>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.phones}</p>
+              <p className={`text-[11px] text-[#AFC0CA] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.18em] uppercase"}`}>{t.phones}</p>
               <p className="mt-2 text-sm text-[#F2F6F8]">{t.membership}: 041910911</p>
               <p className="text-sm text-[#F2F6F8]">{t.administration}: 041910916</p>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.disciplines}</p>
-              <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">{t.services}</p>
+              <p className={`text-[11px] text-[#AFC0CA] ${isCompactLocale ? "tracking-[0.08em]" : "tracking-[0.18em] uppercase"}`}>{t.disciplines}</p>
+              <p className="mt-2 break-words text-sm leading-relaxed text-[#F2F6F8]">{t.services}</p>
             </div>
           </aside>
         </motion.div>

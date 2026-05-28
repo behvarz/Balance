@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -27,10 +27,11 @@ export default function ScrollHero() {
       "(prefers-reduced-motion: reduce)",
     ).matches;
     const shouldUseFallback = prefersReducedMotion;
+    const isDesktop = window.matchMedia("(min-width: 1024px)").matches;
 
     setFallbackMode(shouldUseFallback);
 
-    let updateTween: gsap.core.Tween | null = null;
+    let revealTween: gsap.core.Tween | null = null;
     let scrubTween: gsap.core.Tween | null = null;
     let scrubTrigger: ScrollTrigger | null = null;
 
@@ -39,28 +40,24 @@ export default function ScrollHero() {
         return;
       }
 
-      const state = {
-        targetTime: 0,
-        smoothTime: 0,
-      };
-
       video.pause();
       video.loop = false;
       video.currentTime = 0;
 
-      const maxTime = Math.max(video.duration - 0.06, 0);
+      const maxTime = Math.max(video.duration - 0.08, 0);
       const holdRatio = 1 / 7;
       const holdStart = 1 - holdRatio;
-      let seekQueued = false;
+      const scrubState = { currentTime: 0 };
+      const minDelta = isDesktop ? 1 / 28 : 1 / 40;
+      const tweenDuration = isDesktop ? 0.16 : 0.22;
 
-      const commitTime = () => {
-        seekQueued = false;
-        if (video.seeking || video.readyState < 2) {
+      const applyCurrentTime = () => {
+        if (video.readyState < 2 || video.seeking) {
           return;
         }
 
-        const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
-        if (Math.abs(video.currentTime - nextTime) > 0.018) {
+        const nextTime = Math.min(maxTime, Math.max(0, scrubState.currentTime));
+        if (Math.abs(video.currentTime - nextTime) > minDelta) {
           video.currentTime = nextTime;
         }
       };
@@ -69,7 +66,7 @@ export default function ScrollHero() {
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: 0.7,
+        scrub: isDesktop ? 0.95 : 0.7,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const nextProgress = gsap.utils.clamp(0, 1, self.progress);
@@ -77,26 +74,20 @@ export default function ScrollHero() {
 
           const mappedProgress =
             nextProgress < holdStart ? nextProgress / holdStart : 1;
-          state.targetTime = mappedProgress * maxTime;
+          const targetTime = mappedProgress * maxTime;
 
           scrubTween?.kill();
-          scrubTween = gsap.to(state, {
-            smoothTime: state.targetTime,
-            duration: 0.22,
-            ease: "power2.out",
+          scrubTween = gsap.to(scrubState, {
+            currentTime: targetTime,
+            duration: tweenDuration,
+            ease: "none",
             overwrite: true,
-            onUpdate: () => {
-              if (seekQueued) {
-                return;
-              }
-              seekQueued = true;
-              window.requestAnimationFrame(commitTime);
-            },
+            onUpdate: applyCurrentTime,
           });
         },
       });
 
-      updateTween = gsap.to(video, {
+      revealTween = gsap.to(video, {
         opacity: 1,
         duration: 0.4,
         ease: "power2.out",
@@ -108,9 +99,9 @@ export default function ScrollHero() {
       video.preload = "auto";
       video.pause();
       video.loop = false;
+      video.currentTime = 0;
 
       if (shouldUseFallback) {
-        video.currentTime = 0;
         return;
       }
 
@@ -127,7 +118,7 @@ export default function ScrollHero() {
     return () => {
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
       scrubTween?.kill();
-      updateTween?.kill();
+      revealTween?.kill();
       scrubTrigger?.kill();
     };
   }, []);
@@ -141,7 +132,7 @@ export default function ScrollHero() {
           src="/balance-hero.mp4"
           muted
           playsInline
-          preload="metadata"
+          preload="auto"
         />
 
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,21,27,0.32)_0%,rgba(15,21,27,0.1)_32%,rgba(15,21,27,0.68)_100%)]" />

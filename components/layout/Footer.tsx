@@ -4,8 +4,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+const footerLocale = {
+  am: {
+    contact: "Կապ",
+    social: "Սոցցանցեր",
+    membership: "Անդամակցություն",
+    administration: "Ադմինիստրացիա",
+    weekHours: "Երկ-Շաբ: 07:00-23:00",
+    sundayHours: "Կիր: 08:00-22:00",
+    poweredBy: "Ստեղծված է",
+  },
+  en: {
+    contact: "Contact",
+    social: "Social",
+    membership: "Membership",
+    administration: "Administration",
+    weekHours: "Mon-Sat: 07:00-23:00",
+    sundayHours: "Sun: 08:00-22:00",
+    poweredBy: "Powered by",
+  },
+  ru: {
+    contact: "Контакты",
+    social: "Соцсети",
+    membership: "Абонементы",
+    administration: "Администрация",
+    weekHours: "Пн-Сб: 07:00-23:00",
+    sundayHours: "Вс: 08:00-22:00",
+    poweredBy: "Разработка",
+  },
+} as const;
+
 export default function Footer() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const t = footerLocale[language];
 
   return (
     <footer className="border-t border-white/10 bg-[#121c25]/95">
@@ -25,34 +56,40 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-4">
-            <p className="text-[11px] tracking-[0.2em] text-[#D89B47] uppercase">Contact</p>
+            <p className="text-[11px] tracking-[0.2em] text-[#D89B47] uppercase">{t.contact}</p>
             <div className="mt-4 space-y-2 text-sm text-[#C6D1D7]">
-              <p>Membership: 041910911</p>
-              <p>Administration: 041910916</p>
+              <p>{t.membership}: 041910911</p>
+              <p>{t.administration}: 041910916</p>
               <p>Dzorap 40/2, Yerevan, Armenia, 0002</p>
-              <p>Mon-Sat: 07:00-23:00</p>
-              <p>Sun: 08:00-22:00</p>
+              <p>{t.weekHours}</p>
+              <p>{t.sundayHours}</p>
             </div>
           </div>
 
           <div className="lg:col-span-3">
-            <p className="text-[11px] tracking-[0.2em] text-[#D89B47] uppercase">Social</p>
+            <p className="text-[11px] tracking-[0.2em] text-[#D89B47] uppercase">{t.social}</p>
             <div className="mt-4 grid gap-3 text-sm">
               <Link
                 href="https://www.instagram.com/balancesportcomplex/"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-xl border border-white/12 bg-[#223643]/68 px-4 py-3 text-[#F2F6F8] hover:text-[#28C279]"
+                className="inline-flex items-center gap-3 rounded-xl border border-white/12 bg-[#223643]/68 px-4 py-3 text-[#F2F6F8] hover:text-[#28C279]"
               >
-                instagram.com/balancesportcomplex
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+                  <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5ZM17.5 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+                </svg>
+                <span>Instagram</span>
               </Link>
               <Link
                 href="https://www.facebook.com/p/Balance-Sport-Complex-61556143100729/"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-xl border border-white/12 bg-[#223643]/68 px-4 py-3 text-[#F2F6F8] hover:text-[#28C279]"
+                className="inline-flex items-center gap-3 rounded-xl border border-white/12 bg-[#223643]/68 px-4 py-3 text-[#F2F6F8] hover:text-[#28C279]"
               >
-                facebook.com/Balance-Sport-Complex
+                <svg viewBox="0 0 24 24" aria-hidden="true" className="h-4 w-4 fill-current">
+                  <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.55c0-.95.26-1.6 1.63-1.6h1.75V4.1c-.3-.04-1.32-.1-2.5-.1-2.48 0-4.18 1.5-4.18 4.28v2.38H7.4v3.2h2.8V22h3.3Z" />
+                </svg>
+                <span>Facebook</span>
               </Link>
             </div>
           </div>
@@ -63,7 +100,7 @@ export default function Footer() {
         (c) {new Date().getFullYear()} Balance. {content.footer.rights}
       </div>
       <div className="pb-8 text-center text-xs tracking-[0.14em] text-[#7F8B93]">
-        Powered by{" "}
+        {t.poweredBy}{" "}
         <Link
           href="https://orscale.com"
           target="_blank"

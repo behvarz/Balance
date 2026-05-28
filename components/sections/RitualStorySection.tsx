@@ -4,8 +4,48 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+const localeByLanguage = {
+  am: {
+    address: "Հասցե",
+    hours: "Աշխատաժամեր",
+    phones: "Հեռախոսներ",
+    disciplines: "Ուղղություններ",
+    liveEnergy: "Կենդանի էներգիա",
+    membership: "Անդամակցություն",
+    administration: "Ադմինիստրացիա",
+    services: "Մարզասրահ | Խմբային մարզումներ | Լողավազան | Սպա | Մերսում",
+    week: "Երկ-Շաբ: 07:00-23:00",
+    sunday: "Կիր: 08:00-22:00",
+  },
+  en: {
+    address: "Address",
+    hours: "Hours",
+    phones: "Phones",
+    disciplines: "Disciplines",
+    liveEnergy: "Live Energy",
+    membership: "Membership",
+    administration: "Administration",
+    services: "Gym | Group Workouts | Pool | Spa | Massage",
+    week: "Mon-Sat: 07:00-23:00",
+    sunday: "Sun: 08:00-22:00",
+  },
+  ru: {
+    address: "Адрес",
+    hours: "Часы работы",
+    phones: "Телефоны",
+    disciplines: "Направления",
+    liveEnergy: "Живая энергия",
+    membership: "Абонементы",
+    administration: "Администрация",
+    services: "Зал | Групповые тренировки | Бассейн | Спа | Массаж",
+    week: "Пн-Сб: 07:00-23:00",
+    sunday: "Вс: 08:00-22:00",
+  },
+} as const;
+
 export default function RitualStorySection() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const t = localeByLanguage[language];
 
   return (
     <section id="ritual" className="relative py-20 md:py-28">
@@ -50,7 +90,7 @@ export default function RitualStorySection() {
                   {content.ritual.location}
                 </p>
                 <span className="rounded-full border border-white/16 bg-[#223744]/80 px-3 py-1 text-[10px] tracking-[0.16em] text-[#E3A858] uppercase">
-                  Live Energy
+                  {t.liveEnergy}
                 </span>
               </div>
             </div>
@@ -58,25 +98,25 @@ export default function RitualStorySection() {
 
           <aside className="section-shell flex flex-col gap-4 p-6 md:p-8 lg:col-span-4">
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Address</p>
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.address}</p>
               <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Dzorap 40/2, Yerevan, Armenia 0002</p>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Hours</p>
-              <p className="mt-2 text-sm text-[#F2F6F8]">Mon-Sat: 07:00-23:00</p>
-              <p className="text-sm text-[#F2F6F8]">Sun: 08:00-22:00</p>
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.hours}</p>
+              <p className="mt-2 text-sm text-[#F2F6F8]">{t.week}</p>
+              <p className="text-sm text-[#F2F6F8]">{t.sunday}</p>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Phones</p>
-              <p className="mt-2 text-sm text-[#F2F6F8]">Membership: 041910911</p>
-              <p className="text-sm text-[#F2F6F8]">Administration: 041910916</p>
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.phones}</p>
+              <p className="mt-2 text-sm text-[#F2F6F8]">{t.membership}: 041910911</p>
+              <p className="text-sm text-[#F2F6F8]">{t.administration}: 041910916</p>
             </div>
 
             <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
-              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Disciplines</p>
-              <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Gym | Group Workouts | Pool | Spa | Massage</p>
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">{t.disciplines}</p>
+              <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">{t.services}</p>
             </div>
           </aside>
         </motion.div>

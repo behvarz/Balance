@@ -4,14 +4,38 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
-const sectionStats = [
-  { label: "07:00-23:00", note: "Mon-Sat" },
-  { label: "08:00-22:00", note: "Sun" },
-  { label: "Pool + Spa", note: "Recovery" },
-];
+const localizedSection = {
+  am: {
+    week: "Երկ-Շաբ",
+    sunday: "Կիր",
+    poolSpa: "Լողավազան + Սպա",
+    recovery: "Վերականգնում",
+    disciplines: "Մարզասրահ | Խմբային մարզումներ | Լողավազան | Սպա | Մերսում",
+  },
+  en: {
+    week: "Mon-Sat",
+    sunday: "Sun",
+    poolSpa: "Pool + Spa",
+    recovery: "Recovery",
+    disciplines: "Gym | Group Workouts | Pool | Spa | Massage",
+  },
+  ru: {
+    week: "Пн-Сб",
+    sunday: "Вс",
+    poolSpa: "Бассейн + Спа",
+    recovery: "Восстановление",
+    disciplines: "Зал | Групповые тренировки | Бассейн | Спа | Массаж",
+  },
+} as const;
 
 export default function CollectionSection() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const locale = localizedSection[language];
+  const sectionStats = [
+    { label: "07:00-23:00", note: locale.week },
+    { label: "08:00-22:00", note: locale.sunday },
+    { label: locale.poolSpa, note: locale.recovery },
+  ];
 
   return (
     <section id="collection" className="relative py-20 md:py-28">
@@ -66,7 +90,7 @@ export default function CollectionSection() {
               <div className="absolute right-5 bottom-5 left-5">
                 <p className="text-[10px] tracking-[0.2em] text-[#E3A858] uppercase">Balance Sport Complex</p>
                 <h3 className="mt-2 font-display text-2xl text-[#F2F6F8] md:text-3xl">
-                  Gym | Group Workouts | Pool | Spa | Massage
+                  {locale.disciplines}
                 </h3>
               </div>
             </article>

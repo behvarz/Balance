@@ -5,7 +5,13 @@ import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
 export default function FinalCTA() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const adminLabel =
+    language === "am"
+      ? "Ադմինիստրացիա"
+      : language === "ru"
+        ? "Администрация"
+        : "Administration";
 
   return (
     <section id="contact" className="relative py-20 md:py-28">
@@ -41,7 +47,7 @@ export default function FinalCTA() {
                 href="tel:+37441910916"
                 className="inline-flex items-center justify-center rounded-xl border border-white/16 bg-[#243542]/74 px-5 py-3 text-[11px] tracking-[0.16em] text-[#F2F6F8] uppercase hover:border-[#28C279]/62 hover:bg-[#14945D]/24"
               >
-                Administration
+                {adminLabel}
               </Link>
               <Link
                 href="https://www.instagram.com/balancesportcomplex/"

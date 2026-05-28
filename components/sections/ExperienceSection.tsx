@@ -4,8 +4,33 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
+const localeByLanguage = {
+  am: {
+    recoverySystem: "Վերականգնման համակարգ",
+    recoveryText: "Սաունա, սառը թերապիա, շնչառական հանգստացում և անհատական վերականգնման փուլեր։",
+    directLines: "Ուղիղ կապ",
+    membership: "Անդամակցություն",
+    administration: "Ադմինիստրացիա",
+  },
+  en: {
+    recoverySystem: "Recovery System",
+    recoveryText: "Sauna, cold therapy, breath-led cooldown and tailored reset protocols.",
+    directLines: "Direct Lines",
+    membership: "Membership",
+    administration: "Administration",
+  },
+  ru: {
+    recoverySystem: "Система восстановления",
+    recoveryText: "Сауна, холодовая терапия, дыхательный cooldown и персональные протоколы восстановления.",
+    directLines: "Прямой контакт",
+    membership: "Абонементы",
+    administration: "Администрация",
+  },
+} as const;
+
 export default function ExperienceSection() {
-  const { content } = useLanguage();
+  const { content, language } = useLanguage();
+  const t = localeByLanguage[language];
 
   return (
     <section className="relative py-20 md:py-28">
@@ -63,17 +88,17 @@ export default function ExperienceSection() {
                 </div>
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,30,0.1)_30%,rgba(15,22,30,0.86)_100%)]" />
                 <div className="absolute right-4 bottom-4 left-4">
-                  <p className="text-[10px] tracking-[0.2em] text-[#E3A858] uppercase">Recovery System</p>
+                  <p className="text-[10px] tracking-[0.2em] text-[#E3A858] uppercase">{t.recoverySystem}</p>
                   <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">
-                    Sauna, cold therapy, breath-led cooldown and tailored reset protocols.
+                    {t.recoveryText}
                   </p>
                 </div>
               </article>
 
               <div className="rounded-2xl border border-white/12 bg-[#20303C]/70 p-4">
-                <p className="text-[11px] tracking-[0.16em] text-[#AFC0CA] uppercase">Direct Lines</p>
-                <p className="mt-2 text-sm text-[#F2F6F8]">Membership: 041910911</p>
-                <p className="text-sm text-[#F2F6F8]">Administration: 041910916</p>
+                <p className="text-[11px] tracking-[0.16em] text-[#AFC0CA] uppercase">{t.directLines}</p>
+                <p className="mt-2 text-sm text-[#F2F6F8]">{t.membership}: 041910911</p>
+                <p className="text-sm text-[#F2F6F8]">{t.administration}: 041910916</p>
               </div>
             </div>
           </div>

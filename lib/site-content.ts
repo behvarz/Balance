@@ -113,7 +113,6 @@ const amContent: SiteContent = {
       { text: "Հավասարակշռությունը սկսվում է կարգապահությունից", start: 0.1, end: 0.25 },
       { text: "Մարզվիր ճշգրիտ, վերականգնվիր խելամիտ", start: 0.35, end: 0.5 },
       { text: "Ուժ, շնչառություն, շարժում և վերահսկում", start: 0.6, end: 0.75 },
-      { text: "Premium wellness փորձ՝ կառուցված քո ռիթմով", start: 0.85, end: 1 },
     ],
     exploreCollection: "Բացահայտիր անդամակցությունները",
     scrollHint: "Սքրոլ արա՝ Balance փորձառությունը տեսնելու համար",
@@ -125,61 +124,61 @@ const amContent: SiteContent = {
       "Յուրաքանչյուր փաթեթ միավորում է մարզում, վերականգնում և հստակ առաջընթացի հսկում՝ առանց ավելորդ աղմուկի",
     products: [
       {
-        name: "Essential Plan",
+        name: "Հիմնական փաթեթ",
         description:
-          "Մուտք ուժային, cardio և mobility գոտիներ՝ ամենօրյա կայուն մարզման համար",
+          "Մուտք ուժային, կարդիո և շարժունակության գոտիներ՝ ամենօրյա կայուն մարզման համար",
         price: "$149",
-        tastingNote: "Strength / Cardio / Mobility",
+        tastingNote: "Ուժ / Կարդիո / Շարժունակություն",
       },
       {
-        name: "Performance+ Coaching",
+        name: "Առաջընթաց+ մարզչական",
         description:
           "Անհատական ծրագիր, պարբերական թեստավորում և մարզչական ուղեկցում",
         price: "$289",
-        tastingNote: "Coaching / Metrics / Results",
+        tastingNote: "Մարզչական / Չափումներ / Արդյունք",
       },
       {
-        name: "Recovery Lounge",
+        name: "Վերականգնման գոտի",
         description:
           "Սաունա, սառը թերապիա և վերականգնման պրոտոկոլներ նյարդային համակարգի համար",
         price: "$89",
-        tastingNote: "Sauna / Cold / Recovery",
+        tastingNote: "Սաունա / Սառը / Վերականգնում",
       },
     ],
   },
   ritual: {
-    eyebrow: "Balance փիլիսոփայություն",
+    eyebrow: "Balance-ի փիլիսոփայություն",
     title: "Բարձր արդյունք՝ առանց քաոսի, ինտենսիվություն՝ առանց գերծանրաբեռնվածության",
     description:
       "Տարածքը, լույսը և ծրագրերը նախագծված են այնպես, որ մարմինը և միտքը աշխատեն նույն համակարգում",
     location: "Երևան, Հայաստան",
     paragraphs: [
       "Մարզման գոտիները տարանջատված են ըստ նպատակի՝ մաքուր շարժման հոսքի համար",
-      "Մեր մեթոդը համադրում է performance training, mobility և recovery գիտակցված փուլեր",
+      "Մեր մեթոդը համադրում է արդյունքային մարզում, շարժունակություն և վերականգնման գիտակցված փուլեր",
       "Անկախ մակարդակից՝ ծրագիրը հարմարվում է քեզ և պահպանում կայուն առաջընթացը",
     ],
   },
   experience: {
     eyebrow: "Փորձառություն",
-    title: "Ժամանակակից սպորտային համալիր՝ private wellness ակումբի տրամադրությամբ",
+    title: "Ժամանակակից սպորտային համալիր՝ փակ բարեկեցության ակումբի տրամադրությամբ",
     items: [
       {
-        title: "Zoned Training",
+        title: "Գոտիական մարզում",
         description:
           "Առանձին գոտիներ ուժային, ֆունկցիոնալ և բարձր ինտենսիվության մարզման համար",
       },
       {
-        title: "Smart Recovery",
+        title: "Խելացի վերականգնում",
         description:
-          "Ջերմ և սառը փուլեր, շնչառական cooldown և կառուցված վերականգնում",
+          "Ջերմ և սառը փուլեր, շնչառական հանգստացում և կառուցված վերականգնում",
       },
       {
-        title: "Progress Metrics",
+        title: "Առաջընթացի չափումներ",
         description:
           "Մարմնի ցուցանիշների վերահսկում և տվյալահեն ծրագրի թարմացում",
       },
       {
-        title: "Calm Premium Mood",
+        title: "Հանգիստ պրեմիում միջավայր",
         description:
           "Քիչ աղմուկ, մաքուր միջավայր, ավելի շատ կենտրոնացում և կարգապահություն",
       },
@@ -192,32 +191,32 @@ const amContent: SiteContent = {
       "Տեսողական կադրեր մարզումից, վերականգնումից և համալիրի էներգետիկ միջավայրից",
     shots: [
       {
-        title: "Strength Floor",
+        title: "Ուժային գոտի",
         caption: "Հսկվող ծանրաբեռնվածություն և ճշգրիտ տեխնիկա",
         toneClassName: toneClasses[0],
       },
       {
-        title: "Functional Zone",
+        title: "Ֆունկցիոնալ գոտի",
         caption: "Շարժման ազատություն և ուժի դինամիկա",
         toneClassName: toneClasses[1],
       },
       {
-        title: "Pool Rhythm",
+        title: "Լողավազանի ռիթմ",
         caption: "Վերականգնման հավասարակշռված միջավայր",
         toneClassName: toneClasses[2],
       },
       {
-        title: "Recovery Ritual",
+        title: "Վերականգնման փուլ",
         caption: "Սթրեսի նվազում և նյարդային համակարգի հանգստացում",
         toneClassName: toneClasses[3],
       },
       {
-        title: "Group Energy",
+        title: "Խմբային էներգիա",
         caption: "Թիմային ռիթմ և հստակ ուղեցույց",
         toneClassName: toneClasses[4],
       },
       {
-        title: "Evening Focus",
+        title: "Երեկոյան կենտրոնացում",
         caption: "Օրվա ավարտ՝ վերահսկված և կենտրոնացած",
         toneClassName: toneClasses[5],
       },
@@ -256,7 +255,6 @@ const enContent: SiteContent = {
       { text: "Balance Begins With Discipline", start: 0.1, end: 0.25 },
       { text: "Train Precisely, Recover Intelligently", start: 0.35, end: 0.5 },
       { text: "Strength, Breath, Movement, Control", start: 0.6, end: 0.75 },
-      { text: "Premium Wellness Built Around Your Rhythm", start: 0.85, end: 1 },
     ],
     exploreCollection: "Explore Memberships",
     scrollHint: "Scroll to enter the Balance experience",
@@ -399,7 +397,6 @@ const ruContent: SiteContent = {
       { text: "Баланс начинается с дисциплины", start: 0.1, end: 0.25 },
       { text: "Тренируйся точно, восстанавливайся осознанно", start: 0.35, end: 0.5 },
       { text: "Сила, дыхание, движение и контроль", start: 0.6, end: 0.75 },
-      { text: "Премиальный wellness в твоем ритме", start: 0.85, end: 1 },
     ],
     exploreCollection: "Смотреть абонементы",
     scrollHint: "Прокрутите, чтобы войти в атмосферу Balance",

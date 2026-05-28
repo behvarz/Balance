@@ -32,7 +32,7 @@ export default function HeroOverlayText({
 }: HeroOverlayTextProps) {
   const { content } = useLanguage();
   const ctaOpacity =
-    progress > 0.89 ? Math.min((progress - 0.89) / 0.06, 1) : 0;
+    progress > 0.82 ? Math.min((progress - 0.82) / 0.08, 1) : 0;
   const hintOpacity =
     progress < 0.08 ? Math.max(0, Math.min((0.08 - progress) / 0.08, 1)) : 0;
 
@@ -49,7 +49,7 @@ export default function HeroOverlayText({
               className="absolute max-w-2xl font-body text-base leading-snug font-light tracking-[0.1em] text-[#F5F5F5] md:text-xl lg:text-2xl"
               style={{
                 opacity: momentOpacity,
-                transform: `translateY(${(1 - phaseOpacity) * 14}px)`,
+                transform: `translateY(calc(${(1 - phaseOpacity) * 14}px + 20vh))`,
               }}
             >
               {moment.text}
@@ -58,12 +58,12 @@ export default function HeroOverlayText({
         })}
 
         <div
-          className="absolute top-[58%] left-1/2 flex w-full max-w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 px-6"
+          className="absolute top-[68%] left-1/2 flex w-full max-w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 px-6"
           style={{
             opacity: ctaOpacity,
           }}
         >
-          <span className="font-body text-[11px] tracking-[0.24em] text-[#D89B47] uppercase md:text-xs">
+          <span className="font-body text-[11px] tracking-[0.24em] text-[#1FA15A] uppercase md:text-xs">
             {content.hero.exploreCollection}
           </span>
           <Link

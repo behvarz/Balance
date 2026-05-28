@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 
@@ -12,52 +13,70 @@ export default function RitualStorySection() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
-          className="grid gap-6 lg:grid-cols-12"
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.75, ease: [0.2, 0.8, 0.2, 1] }}
+          className="grid gap-5 lg:grid-cols-12"
         >
-          <article className="section-shell p-6 md:p-8 lg:col-span-7">
-            <p className="text-xs tracking-[0.22em] text-[#E3A858] uppercase">
-              {content.ritual.eyebrow}
-            </p>
-            <h2 className="mt-4 font-display text-4xl leading-tight text-[#F2F6F8] md:text-5xl">
+          <article className="section-shell overflow-hidden p-6 md:p-9 lg:col-span-8">
+            <p className="text-[11px] tracking-[0.26em] text-[#E3A858] uppercase">{content.ritual.eyebrow}</p>
+            <h2 className="mt-4 max-w-4xl font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">
               {content.ritual.title}
             </h2>
-            <p className="mt-5 text-base leading-relaxed text-[#B8C2C8] md:text-lg">
+            <p className="mt-5 max-w-3xl text-sm leading-relaxed text-[#C0CBD2] md:text-base">
               {content.ritual.description}
             </p>
 
-            <div className="mt-7 grid gap-4 md:grid-cols-2">
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
               {content.ritual.paragraphs.map((paragraph) => (
-                <p key={paragraph} className="rounded-xl border border-white/10 bg-[#1D2C36]/70 p-4 text-sm leading-relaxed text-[#B8C2C8]">
-                  {paragraph}
-                </p>
+                <div key={paragraph} className="rounded-xl border border-white/12 bg-[#1F2F3A]/72 p-4">
+                  <p className="text-sm leading-relaxed text-[#CBD4DA]">{paragraph}</p>
+                </div>
               ))}
+            </div>
+
+            <div className="mt-7 relative overflow-hidden rounded-2xl border border-white/12">
+              <div className="relative h-52 md:h-64">
+                <Image
+                  src="/images/product-daily.png"
+                  alt="Functional zone"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,30,0.1)_0%,rgba(15,22,30,0.85)_100%)]" />
+              <div className="absolute right-4 bottom-4 left-4 flex items-end justify-between gap-4">
+                <p className="max-w-xl text-sm leading-relaxed text-[#F2F6F8]">
+                  {content.ritual.location}
+                </p>
+                <span className="rounded-full border border-white/16 bg-[#223744]/80 px-3 py-1 text-[10px] tracking-[0.16em] text-[#E3A858] uppercase">
+                  Live Energy
+                </span>
+              </div>
             </div>
           </article>
 
-          <aside className="section-shell flex flex-col justify-between p-6 md:p-8 lg:col-span-5">
-            <div>
-              <p className="text-xs tracking-[0.2em] text-[#E3A858] uppercase">Complex Data</p>
-              <p className="mt-3 text-2xl font-semibold text-[#F2F6F8]">{content.ritual.location}</p>
+          <aside className="section-shell flex flex-col gap-4 p-6 md:p-8 lg:col-span-4">
+            <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Address</p>
+              <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Dzorap 40/2, Yerevan, Armenia 0002</p>
             </div>
 
-            <div className="mt-6 grid gap-4">
-              <div className="rounded-xl border border-white/10 bg-[#1D2C36]/66 p-4">
-                <p className="text-xs tracking-[0.16em] text-[#B8C2C8] uppercase">Working Hours</p>
-                <p className="mt-2 text-lg text-[#F2F6F8]">Mon-Sat 07:00-23:00</p>
-                <p className="text-lg text-[#F2F6F8]">Sun 08:00-22:00</p>
-              </div>
+            <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Hours</p>
+              <p className="mt-2 text-sm text-[#F2F6F8]">Mon-Sat: 07:00-23:00</p>
+              <p className="text-sm text-[#F2F6F8]">Sun: 08:00-22:00</p>
+            </div>
 
-              <div className="rounded-xl border border-white/10 bg-[#1D2C36]/66 p-4">
-                <p className="text-xs tracking-[0.16em] text-[#B8C2C8] uppercase">Disciplines</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Gym | Group workouts | Pool | Spa | Massage</p>
-              </div>
+            <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Phones</p>
+              <p className="mt-2 text-sm text-[#F2F6F8]">Membership: 041910911</p>
+              <p className="text-sm text-[#F2F6F8]">Administration: 041910916</p>
+            </div>
 
-              <div className="rounded-xl border border-white/10 bg-[#1D2C36]/66 p-4">
-                <p className="text-xs tracking-[0.16em] text-[#B8C2C8] uppercase">Address</p>
-                <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Dzorap 40/2, Yerevan, Armenia 0002</p>
-              </div>
+            <div className="rounded-2xl border border-white/12 bg-[#21313E]/76 p-4">
+              <p className="text-[11px] tracking-[0.18em] text-[#AFC0CA] uppercase">Disciplines</p>
+              <p className="mt-2 text-sm leading-relaxed text-[#F2F6F8]">Gym | Group Workouts | Pool | Spa | Massage</p>
             </div>
           </aside>
         </motion.div>

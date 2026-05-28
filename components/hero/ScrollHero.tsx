@@ -31,28 +31,8 @@ export default function ScrollHero() {
     setFallbackMode(shouldUseFallback);
 
     let updateTween: gsap.core.Tween | null = null;
+    let scrubTween: gsap.core.Tween | null = null;
     let scrubTrigger: ScrollTrigger | null = null;
-    let autoplayInitiated = false;
-    let animationFrameId = 0;
-
-    const autoplayVideo = () => {
-      if (autoplayInitiated && !video.paused) {
-        return;
-      }
-
-      autoplayInitiated = true;
-      video.loop = true;
-      video.muted = true;
-      video.playbackRate = 0.9;
-      video.setAttribute("autoplay", "");
-
-      const playPromise = video.play();
-      if (playPromise) {
-        playPromise.catch(() => {
-          autoplayInitiated = false;
-        });
-      }
-    };
 
     const setupScrub = () => {
       if (!Number.isFinite(video.duration) || video.duration <= 0.1) {
@@ -69,52 +49,27 @@ export default function ScrollHero() {
       video.currentTime = 0;
 
       const maxTime = Math.max(video.duration - 0.06, 0);
-      const smoothFactor = 0.11;
       const holdRatio = 1 / 7;
       const holdStart = 1 - holdRatio;
-      const targetFrameInterval = 1000 / 30;
-      let lastSeekTimestamp = 0;
-      let pendingSeekFrames = 0;
+      let seekQueued = false;
 
-      const tick = (timestamp: number) => {
-        state.smoothTime += (state.targetTime - state.smoothTime) * smoothFactor;
-
-        if (
-          video.readyState >= 2 &&
-          timestamp - lastSeekTimestamp >= targetFrameInterval &&
-          !video.seeking
-        ) {
-          const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
-
-          if (Math.abs(video.currentTime - nextTime) > 0.016) {
-            video.currentTime = nextTime;
-            lastSeekTimestamp = timestamp;
-          }
-        }
-
-        if (video.seeking && Math.abs(video.currentTime - state.targetTime) > 0.08) {
-          pendingSeekFrames += 1;
-        } else {
-          pendingSeekFrames = Math.max(0, pendingSeekFrames - 2);
-        }
-
-        if (pendingSeekFrames > 80) {
-          scrubTrigger?.kill();
-          setFallbackMode(true);
-          autoplayVideo();
+      const commitTime = () => {
+        seekQueued = false;
+        if (video.seeking || video.readyState < 2) {
           return;
         }
 
-        animationFrameId = window.requestAnimationFrame(tick);
+        const nextTime = Math.min(maxTime, Math.max(0, state.smoothTime));
+        if (Math.abs(video.currentTime - nextTime) > 0.018) {
+          video.currentTime = nextTime;
+        }
       };
-
-      animationFrameId = window.requestAnimationFrame(tick);
 
       scrubTrigger = ScrollTrigger.create({
         trigger: section,
         start: "top top",
         end: "bottom bottom",
-        scrub: 1.2,
+        scrub: 0.7,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
           const nextProgress = gsap.utils.clamp(0, 1, self.progress);
@@ -123,6 +78,21 @@ export default function ScrollHero() {
           const mappedProgress =
             nextProgress < holdStart ? nextProgress / holdStart : 1;
           state.targetTime = mappedProgress * maxTime;
+
+          scrubTween?.kill();
+          scrubTween = gsap.to(state, {
+            smoothTime: state.targetTime,
+            duration: 0.22,
+            ease: "power2.out",
+            overwrite: true,
+            onUpdate: () => {
+              if (seekQueued) {
+                return;
+              }
+              seekQueued = true;
+              window.requestAnimationFrame(commitTime);
+            },
+          });
         },
       });
 
@@ -136,13 +106,16 @@ export default function ScrollHero() {
     const onLoadedMetadata = () => {
       setIsReady(true);
       video.preload = "auto";
+      video.pause();
+      video.loop = false;
 
       if (shouldUseFallback) {
-        autoplayVideo();
-      } else {
-        void video.play().then(() => video.pause()).catch(() => null);
-        setupScrub();
+        video.currentTime = 0;
+        return;
       }
+
+      setupScrub();
+      ScrollTrigger.refresh();
     };
 
     if (video.readyState >= 1) {
@@ -151,42 +124,9 @@ export default function ScrollHero() {
       video.addEventListener("loadedmetadata", onLoadedMetadata, { once: true });
     }
 
-    const onVisibilityChange = () => {
-      if (!document.hidden && shouldUseFallback) {
-        autoplayVideo();
-      }
-    };
-
-    const onCanPlay = () => {
-      if (shouldUseFallback) {
-        autoplayVideo();
-      }
-    };
-
-    const onFirstInteraction = () => {
-      if (shouldUseFallback) {
-        autoplayVideo();
-      }
-    };
-
-    document.addEventListener("visibilitychange", onVisibilityChange);
-    video.addEventListener("canplay", onCanPlay);
-    window.addEventListener("touchstart", onFirstInteraction, {
-      passive: true,
-      once: true,
-    });
-    window.addEventListener("pointerdown", onFirstInteraction, {
-      passive: true,
-      once: true,
-    });
-
     return () => {
-      document.removeEventListener("visibilitychange", onVisibilityChange);
       video.removeEventListener("loadedmetadata", onLoadedMetadata);
-      video.removeEventListener("canplay", onCanPlay);
-      window.removeEventListener("touchstart", onFirstInteraction);
-      window.removeEventListener("pointerdown", onFirstInteraction);
-      window.cancelAnimationFrame(animationFrameId);
+      scrubTween?.kill();
       updateTween?.kill();
       scrubTrigger?.kill();
     };

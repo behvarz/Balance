@@ -35,20 +35,13 @@ function isLanguageCode(value: string): value is LanguageCode {
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<LanguageCode>(() => {
-    if (typeof window === "undefined") {
-      return defaultLanguage;
-    }
-
-    const storedLanguage = window.localStorage.getItem(STORAGE_KEY);
-    if (storedLanguage && isLanguageCode(storedLanguage)) {
-      return storedLanguage;
-    }
-
-    return defaultLanguage;
-  });
+  const [language, setLanguageState] = useState<LanguageCode>(defaultLanguage);
 
   useEffect(() => {
+    const storedLanguage = window.localStorage.getItem(STORAGE_KEY);
+    if (storedLanguage && isLanguageCode(storedLanguage) && storedLanguage !== defaultLanguage) {
+      window.localStorage.removeItem(STORAGE_KEY);
+    }
     window.localStorage.setItem(STORAGE_KEY, language);
     document.documentElement.lang = htmlLangByLanguage[language];
   }, [language]);

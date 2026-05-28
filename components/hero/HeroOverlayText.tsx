@@ -46,10 +46,10 @@ export default function HeroOverlayText({
           return (
             <p
               key={moment.text}
-              className="absolute max-w-3xl text-4xl leading-tight tracking-[0.06em] text-[#F5F5F5] md:text-6xl lg:text-7xl font-display"
+              className="absolute max-w-2xl font-body text-base leading-snug font-light tracking-[0.1em] text-[#F5F5F5] md:text-xl lg:text-2xl"
               style={{
                 opacity: momentOpacity,
-                transform: `translateY(${(1 - phaseOpacity) * 18}px)`,
+                transform: `translateY(${(1 - phaseOpacity) * 14}px)`,
               }}
             >
               {moment.text}
@@ -58,27 +58,27 @@ export default function HeroOverlayText({
         })}
 
         <div
-          className="absolute top-[58%] left-1/2 flex w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-5 px-6"
+          className="absolute top-[58%] left-1/2 flex w-full max-w-[560px] -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-4 px-6"
           style={{
             opacity: ctaOpacity,
           }}
         >
-          <span className="font-display text-xl tracking-[0.14em] text-[#D89B47] uppercase md:text-2xl">
+          <span className="font-body text-[11px] tracking-[0.24em] text-[#D89B47] uppercase md:text-xs">
             {content.hero.exploreCollection}
           </span>
           <Link
             href="#collection"
-            className="pointer-events-auto inline-flex rounded-full border border-[rgba(255,255,255,0.2)] bg-[#24313B]/74 px-6 py-3 text-xs tracking-[0.24em] text-[#F2F6F8] uppercase hover:-translate-y-0.5 hover:border-[#28C279]/68 hover:bg-[#14945D]/22"
+            className="pointer-events-auto inline-flex rounded-full border border-[rgba(255,255,255,0.2)] bg-[#24313B]/74 px-5 py-2.5 text-[10px] tracking-[0.24em] text-[#F2F6F8] uppercase hover:-translate-y-0.5 hover:border-[#28C279]/68 hover:bg-[#14945D]/22"
           >
             {content.actions.enter}
           </Link>
         </div>
 
         <div
-          className="absolute flex flex-col items-center gap-2 md:bottom-10"
+          className="absolute flex flex-col items-center gap-2"
           style={{
             opacity: isReady ? hintOpacity : 0,
-            bottom: "calc(env(safe-area-inset-bottom, 0px) + 6.6rem)",
+            bottom: "calc(env(safe-area-inset-bottom, 0px) + 4.9rem)",
           }}
         >
           <span className="text-[11px] tracking-[0.18em] text-[#B8C2C8] uppercase">

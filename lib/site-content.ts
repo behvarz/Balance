@@ -1,4 +1,4 @@
-export const languageCodes = ["am", "en", "ru"] as const;
+﻿export const languageCodes = ["am", "en", "ru"] as const;
 
 export type LanguageCode = (typeof languageCodes)[number];
 
@@ -84,18 +84,18 @@ type SiteContent = {
 };
 
 const toneClasses = [
-  "from-[#263745] via-[#19A667] to-[#1A2933]",
-  "from-[#304454] via-[#2CC27B] to-[#1B2730]",
-  "from-[#202F3A] via-[#D49B4A] to-[#273846]",
-  "from-[#293A49] via-[#36505E] to-[#1FAE6D]",
-  "from-[#1D2E3A] via-[#14945D] to-[#D7A558]",
-  "from-[#2B3F4D] via-[#36C784] to-[#1D2D39]",
+  "from-[#233644] via-[#1FA15A] to-[#101A22]",
+  "from-[#2D4456] via-[#28C279] to-[#172431]",
+  "from-[#2B3F4E] via-[#D89B47] to-[#1A2936]",
+  "from-[#263A49] via-[#1A9365] to-[#15222E]",
+  "from-[#30495A] via-[#B67A2D] to-[#1B2934]",
+  "from-[#1D3040] via-[#26B873] to-[#243848]",
 ];
 
 const amContent: SiteContent = {
   nav: {
     home: "Գլխավոր",
-    collection: "Անդամակցություն",
+    collection: "Անդամակցություններ",
     ritual: "Փիլիսոփայություն",
     contact: "Կապ",
   },
@@ -110,78 +110,78 @@ const amContent: SiteContent = {
   },
   hero: {
     moments: [
-      { text: "Հավասարակշռությունը սկսվում է լռությունից", start: 0.1, end: 0.25 },
-      { text: "Մարզվիր ճշգրտությամբ, վերականգնվիր նպատակով", start: 0.35, end: 0.5 },
-      { text: "Լույս, շնչառություն, ուժ և տարածք", start: 0.6, end: 0.75 },
-      { text: "Պրեմիում wellness, հատուկ քեզ համար", start: 0.85, end: 1 },
+      { text: "Հավասարակշռությունը սկսվում է կարգապահությունից", start: 0.1, end: 0.25 },
+      { text: "Մարզվիր ճշգրիտ, վերականգնվիր խելամիտ", start: 0.35, end: 0.5 },
+      { text: "Ուժ, շնչառություն, շարժում և վերահսկում", start: 0.6, end: 0.75 },
+      { text: "Premium wellness փորձ՝ կառուցված քո ռիթմով", start: 0.85, end: 1 },
     ],
     exploreCollection: "Բացահայտիր անդամակցությունները",
-    scrollHint: "Սքրոլ արա, որպեսզի մտնես Balance փորձառության մեջ",
+    scrollHint: "Սքրոլ արա՝ Balance փորձառությունը տեսնելու համար",
   },
   collection: {
-    eyebrow: "Անդամակցություն",
-    title: "Անդամակցություններ, որոնք կառուցված են երկարաժամկետ արդյունքի համար",
+    eyebrow: "Ծրագրեր",
+    title: "Անդամակցություններ՝ կառուցված արդյունքի և կայուն ռիթմի համար",
     description:
-      "Յուրաքանչյուր փաթեթ միավորում է ուժային մարզում, սմարթ ռիքավերի և պարզ վերահսկվող առաջընթաց",
+      "Յուրաքանչյուր փաթեթ միավորում է մարզում, վերականգնում և հստակ առաջընթացի հսկում՝ առանց ավելորդ աղմուկի",
     products: [
       {
-        name: "Essential Membership",
+        name: "Essential Plan",
         description:
-          "Մուտք ուժային, cardio և mobility գոտիներ, հարմար է կայուն օրական ռեժիմի համար",
+          "Մուտք ուժային, cardio և mobility գոտիներ՝ ամենօրյա կայուն մարզման համար",
         price: "$149",
         tastingNote: "Strength / Cardio / Mobility",
       },
       {
         name: "Performance+ Coaching",
         description:
-          "Անհատական ծրագիր, թեստավորում, առաջընթացի հետևում և մարզչական ուղեկցում",
+          "Անհատական ծրագիր, պարբերական թեստավորում և մարզչական ուղեկցում",
         price: "$289",
-        tastingNote: "Coaching / Progress / Metrics",
+        tastingNote: "Coaching / Metrics / Results",
       },
       {
-        name: "Recovery Lounge Access",
+        name: "Recovery Lounge",
         description:
-          "Սաունա, սառը թերապիա և վերականգնման պրոտոկոլներ կենտրոնական նյարդային համակարգի համար",
+          "Սաունա, սառը թերապիա և վերականգնման պրոտոկոլներ նյարդային համակարգի համար",
         price: "$89",
         tastingNote: "Sauna / Cold / Recovery",
       },
     ],
   },
   ritual: {
-    eyebrow: "Փիլիսոփայություն",
-    title: "Արդյունք առանց գերլարվածության, ռիթմ առանց քաոսի",
+    eyebrow: "Balance փիլիսոփայություն",
+    title: "Բարձր արդյունք՝ առանց քաոսի, ինտենսիվություն՝ առանց գերծանրաբեռնվածության",
     description:
-      "Balance-ում տարածքը, լույսը և ծրագրերը մտածված են, որպեսզի մարմինը և միտքը աշխատեն մեկ համակարգով",
+      "Տարածքը, լույսը և ծրագրերը նախագծված են այնպես, որ մարմինը և միտքը աշխատեն նույն համակարգում",
     location: "Երևան, Հայաստան",
     paragraphs: [
-      "Մարզման գոտիները առանձնացված են ըստ նպատակի, որպեսզի շարժման հոսքը լինի պարզ և կենտրոնացված",
-      "Մեր մեթոդը միավորում է performance training, mobility և նյարդային համակարգի վերականգնում",
-      "Անկախ քո մակարդակից, համակարգը հարմարվում է քեզ և պահպանում կայուն առաջընթացը",
+      "Մարզման գոտիները տարանջատված են ըստ նպատակի՝ մաքուր շարժման հոսքի համար",
+      "Մեր մեթոդը համադրում է performance training, mobility և recovery գիտակցված փուլեր",
+      "Անկախ մակարդակից՝ ծրագիրը հարմարվում է քեզ և պահպանում կայուն առաջընթացը",
     ],
   },
   experience: {
     eyebrow: "Փորձառություն",
-    title: "Ժամանակակից սպորտային համալիր, որը գործում է որպես wellness ակումբ",
+    title: "Ժամանակակից սպորտային համալիր՝ private wellness ակումբի տրամադրությամբ",
     items: [
       {
         title: "Zoned Training",
         description:
-          "Առանձին գոտիներ ուժի, ֆունկցիոնալ շարժման և բարձր ինտենսիվության աշխատանքի համար",
+          "Առանձին գոտիներ ուժային, ֆունկցիոնալ և բարձր ինտենսիվության մարզման համար",
       },
       {
         title: "Smart Recovery",
         description:
-          "Սառը և տաք վերականգնման փուլեր, շնչառական cooldown և հստակ պլանավորված վերականգնում",
+          "Ջերմ և սառը փուլեր, շնչառական cooldown և կառուցված վերականգնում",
       },
       {
         title: "Progress Metrics",
         description:
-          "Մարմնի ցուցանիշներ, պարբերական վերահաշվարկ և տվյալահեն ծրագրի թարմացում",
+          "Մարմնի ցուցանիշների վերահսկում և տվյալահեն ծրագրի թարմացում",
       },
       {
-        title: "Private-Class Mood",
+        title: "Calm Premium Mood",
         description:
-          "Քիչ աղմուկ, ավելի շատ կենտրոնացում, մաքուր տեսք և կայուն մարզման մթնոլորտ",
+          "Քիչ աղմուկ, մաքուր միջավայր, ավելի շատ կենտրոնացում և կարգապահություն",
       },
     ],
   },
@@ -189,48 +189,48 @@ const amContent: SiteContent = {
     eyebrow: "Մթնոլորտ",
     title: "Balance-ի իրական ռիթմը",
     description:
-      "Տեսողական հոսք մարզումից, վերականգնումից և ամենօրյա կարգապահությունից",
+      "Տեսողական կադրեր մարզումից, վերականգնումից և համալիրի էներգետիկ միջավայրից",
     shots: [
       {
-        title: "Morning Reset",
-        caption: "Սկիզբը շնչառությամբ և մաքուր ուշադրությամբ",
+        title: "Strength Floor",
+        caption: "Հսկվող ծանրաբեռնվածություն և ճշգրիտ տեխնիկա",
         toneClassName: toneClasses[0],
       },
       {
-        title: "Strength Session",
-        caption: "Վերահսկվող ինտենսիվություն և տեխնիկա",
+        title: "Functional Zone",
+        caption: "Շարժման ազատություն և ուժի դինամիկա",
         toneClassName: toneClasses[1],
       },
       {
-        title: "Recovery Zone",
-        caption: "Վերականգնումը, որը հաջորդ մարզման հիմքն է",
+        title: "Pool Rhythm",
+        caption: "Վերականգնման հավասարակշռված միջավայր",
         toneClassName: toneClasses[2],
       },
       {
-        title: "Mobility Flow",
-        caption: "Շարժման լայնություն և հոդերի ազատություն",
+        title: "Recovery Ritual",
+        caption: "Սթրեսի նվազում և նյարդային համակարգի հանգստացում",
         toneClassName: toneClasses[3],
       },
       {
-        title: "Evening Conditioning",
-        caption: "Օրվա վերջում հաշվարկված ծանրաբեռնվածություն",
+        title: "Group Energy",
+        caption: "Թիմային ռիթմ և հստակ ուղեցույց",
         toneClassName: toneClasses[4],
       },
       {
-        title: "Calm Finish",
-        caption: "Հավասարակշռված ավարտ և մաքուր վերականգնում",
+        title: "Evening Focus",
+        caption: "Օրվա ավարտ՝ վերահսկված և կենտրոնացած",
         toneClassName: toneClasses[5],
       },
     ],
   },
   finalCta: {
-    title: "Ամրագրիր քո փորձնական այցը",
+    title: "Ամրագրիր փորձնական այցդ",
     subtitle:
-      "Ծանոթացիր Balance Sport Complex-ին և կազմիր անձնական մարզման ու ռիքավերիի համակարգ",
+      "Միացիր Balance Sport Complex-ին և կառուցիր մարզման ու վերականգնման քո անձնական համակարգը",
   },
   footer: {
     description:
-      "Ժամանակակից սպորտային համալիր ուժի, շարժման և վերականգնման հավասարակշռված համակարգով",
+      "Ժամանակակից սպորտային համալիր՝ ուժի, շարժման և վերականգնման հավասարակշռված համակարգով",
     rights: "Բոլոր իրավունքները պաշտպանված են",
   },
 };
@@ -253,58 +253,58 @@ const enContent: SiteContent = {
   },
   hero: {
     moments: [
-      { text: "Balance Begins In Stillness", start: 0.1, end: 0.25 },
-      { text: "Train With Precision, Recover With Intention", start: 0.35, end: 0.5 },
-      { text: "Light, Breath, Strength, and Space", start: 0.6, end: 0.75 },
-      { text: "Premium Wellness, Built Around You", start: 0.85, end: 1 },
+      { text: "Balance Begins With Discipline", start: 0.1, end: 0.25 },
+      { text: "Train Precisely, Recover Intelligently", start: 0.35, end: 0.5 },
+      { text: "Strength, Breath, Movement, Control", start: 0.6, end: 0.75 },
+      { text: "Premium Wellness Built Around Your Rhythm", start: 0.85, end: 1 },
     ],
     exploreCollection: "Explore Memberships",
     scrollHint: "Scroll to enter the Balance experience",
   },
   collection: {
-    eyebrow: "Memberships",
-    title: "Membership plans designed for consistent long term results",
+    eyebrow: "Programs",
+    title: "Membership plans designed for performance and consistency",
     description:
-      "Every package blends strength training, smart recovery, and clear measurable progress",
+      "Every package blends focused training, intelligent recovery, and measurable progress",
     products: [
       {
-        name: "Essential Membership",
+        name: "Essential Plan",
         description:
-          "Access to strength, cardio, and mobility zones, ideal for a stable weekly training rhythm",
+          "Access to strength, cardio, and mobility zones for a stable weekly rhythm",
         price: "$149",
         tastingNote: "Strength / Cardio / Mobility",
       },
       {
         name: "Performance+ Coaching",
         description:
-          "Personalized training plans, body assessments, and coach-led progress management",
+          "Personalized plan, body testing, and coach-led progression tracking",
         price: "$289",
-        tastingNote: "Coaching / Progress / Metrics",
+        tastingNote: "Coaching / Metrics / Results",
       },
       {
-        name: "Recovery Lounge Access",
+        name: "Recovery Lounge",
         description:
-          "Sauna, cold therapy, and structured recovery protocols that support your nervous system",
+          "Sauna, cold therapy, and recovery protocols to restore your nervous system",
         price: "$89",
         tastingNote: "Sauna / Cold / Recovery",
       },
     ],
   },
   ritual: {
-    eyebrow: "Philosophy",
-    title: "High performance without overload, structure without noise",
+    eyebrow: "Balance Philosophy",
+    title: "High output without noise, intensity without overload",
     description:
-      "At Balance, space, lighting, and programming are aligned so body and mind perform as one system",
+      "Space, lighting, and programming are designed to align body and mind into one system",
     location: "Yerevan, Armenia",
     paragraphs: [
-      "Training zones are separated by goal, so movement flow stays clean and intentional",
-      "Our method combines performance training, mobility, and nervous-system recovery",
-      "Whatever your level, the system adapts to you and protects steady long term progress",
+      "Training zones are separated by objective, keeping movement flow clean and intentional",
+      "Our method combines performance training, mobility work, and recovery phases",
+      "Whatever your level, the system adapts to you and protects long-term progress",
     ],
   },
   experience: {
     eyebrow: "Experience",
-    title: "A modern sport complex that works like a private wellness club",
+    title: "A modern sport complex with a private-club wellness atmosphere",
     items: [
       {
         title: "Zoned Training",
@@ -314,7 +314,7 @@ const enContent: SiteContent = {
       {
         title: "Smart Recovery",
         description:
-          "Cold and heat phases, breath-led cooldown, and structured restoration after load",
+          "Heat and cold cycles, breath-led cooldown, and structured restoration",
       },
       {
         title: "Progress Metrics",
@@ -322,9 +322,9 @@ const enContent: SiteContent = {
           "Body tracking, periodic recalibration, and data-driven program updates",
       },
       {
-        title: "Private-Class Mood",
+        title: "Calm Premium Mood",
         description:
-          "Lower noise, higher focus, clean visuals, and a premium training atmosphere",
+          "Lower noise, sharper focus, clean visuals, and disciplined execution",
       },
     ],
   },
@@ -332,36 +332,36 @@ const enContent: SiteContent = {
     eyebrow: "Atmosphere",
     title: "The real rhythm of Balance",
     description:
-      "Visual moments from training, recovery, and disciplined daily performance",
+      "Visual moments from training, recovery, and daily performance discipline",
     shots: [
       {
-        title: "Morning Reset",
-        caption: "Start with breath and focused clarity",
+        title: "Strength Floor",
+        caption: "Controlled load and precise mechanics",
         toneClassName: toneClasses[0],
       },
       {
-        title: "Strength Session",
-        caption: "Controlled intensity and sharp mechanics",
+        title: "Functional Zone",
+        caption: "Dynamic movement and active mobility",
         toneClassName: toneClasses[1],
       },
       {
-        title: "Recovery Zone",
-        caption: "Recovery that builds the next session",
+        title: "Pool Rhythm",
+        caption: "Balanced environment for restoration",
         toneClassName: toneClasses[2],
       },
       {
-        title: "Mobility Flow",
-        caption: "Range, control, and joint freedom",
+        title: "Recovery Ritual",
+        caption: "Nervous-system reset and physical decompression",
         toneClassName: toneClasses[3],
       },
       {
-        title: "Evening Conditioning",
-        caption: "Calculated work at the end of the day",
+        title: "Group Energy",
+        caption: "Coach-led structure and collective momentum",
         toneClassName: toneClasses[4],
       },
       {
-        title: "Calm Finish",
-        caption: "Balanced closure and clear reset",
+        title: "Evening Focus",
+        caption: "A calm finish with deliberate effort",
         toneClassName: toneClasses[5],
       },
     ],
@@ -369,7 +369,7 @@ const enContent: SiteContent = {
   finalCta: {
     title: "Book your trial visit",
     subtitle:
-      "Step into Balance Sport Complex and set your personal training and recovery system",
+      "Join Balance Sport Complex and build your personal system for training and recovery",
   },
   footer: {
     description:
@@ -396,78 +396,78 @@ const ruContent: SiteContent = {
   },
   hero: {
     moments: [
-      { text: "Баланс начинается с тишины", start: 0.1, end: 0.25 },
+      { text: "Баланс начинается с дисциплины", start: 0.1, end: 0.25 },
       { text: "Тренируйся точно, восстанавливайся осознанно", start: 0.35, end: 0.5 },
-      { text: "Свет, дыхание, сила и пространство", start: 0.6, end: 0.75 },
-      { text: "Премиальный wellness, построенный под тебя", start: 0.85, end: 1 },
+      { text: "Сила, дыхание, движение и контроль", start: 0.6, end: 0.75 },
+      { text: "Премиальный wellness в твоем ритме", start: 0.85, end: 1 },
     ],
     exploreCollection: "Смотреть абонементы",
-    scrollHint: "Прокрутите, чтобы войти в опыт Balance",
+    scrollHint: "Прокрутите, чтобы войти в атмосферу Balance",
   },
   collection: {
-    eyebrow: "Абонементы",
-    title: "Пакеты, созданные для стабильного долгосрочного прогресса",
+    eyebrow: "Программы",
+    title: "Абонементы для стабильного прогресса и высокой формы",
     description:
-      "Каждый пакет объединяет силовую работу, умное восстановление и измеримый рост",
+      "Каждый пакет сочетает тренировки, продуманное восстановление и контроль результата",
     products: [
       {
-        name: "Essential Membership",
+        name: "Essential Plan",
         description:
-          "Доступ к зонам силы, cardio и mobility, оптимально для устойчивого недельного ритма",
+          "Доступ к зонам силы, cardio и mobility для устойчивого недельного ритма",
         price: "$149",
         tastingNote: "Strength / Cardio / Mobility",
       },
       {
         name: "Performance+ Coaching",
         description:
-          "Персональные планы, тестирование тела и сопровождение тренера по прогрессу",
+          "Индивидуальный план, тестирование и сопровождение тренера по прогрессу",
         price: "$289",
-        tastingNote: "Coaching / Progress / Metrics",
+        tastingNote: "Coaching / Metrics / Results",
       },
       {
-        name: "Recovery Lounge Access",
+        name: "Recovery Lounge",
         description:
-          "Сауна, холодная терапия и структурированные протоколы восстановления после нагрузок",
+          "Сауна, холодовая терапия и протоколы восстановления после нагрузки",
         price: "$89",
         tastingNote: "Sauna / Cold / Recovery",
       },
     ],
   },
   ritual: {
-    eyebrow: "Философия",
-    title: "Высокий результат без перегруза, структура без шума",
+    eyebrow: "Философия Balance",
+    title: "Высокий результат без шума, интенсивность без перегруза",
     description:
-      "В Balance пространство, свет и программы выстроены так, чтобы тело и ум работали как единая система",
+      "Пространство, свет и программы построены так, чтобы тело и ум работали как единая система",
     location: "Ереван, Армения",
     paragraphs: [
-      "Тренировочные зоны разделены по задаче, поэтому поток движения остается чистым и понятным",
-      "Наш метод объединяет performance training, mobility и восстановление нервной системы",
-      "Независимо от уровня, система адаптируется под тебя и сохраняет стабильный прогресс",
+      "Зоны тренировок разделены по задачам, чтобы движение оставалось чистым и понятным",
+      "Наш подход сочетает performance training, mobility и этапы восстановления",
+      "Независимо от уровня, система адаптируется к вам и сохраняет стабильный прогресс",
     ],
   },
   experience: {
     eyebrow: "Опыт",
-    title: "Современный спорткомплекс, работающий как private wellness клуб",
+    title: "Современный спорткомплекс с атмосферой private wellness клуба",
     items: [
       {
         title: "Zoned Training",
         description:
-          "Отдельные зоны для силы, функционального движения и высокоинтенсивной работы",
+          "Отдельные зоны для силовой работы, функционального движения и интенсивного кондишнинга",
       },
       {
         title: "Smart Recovery",
         description:
-          "Холод и тепло, дыхательный cooldown и системное восстановление после нагрузки",
+          "Циклы тепла и холода, дыхательный cooldown и структурированное восстановление",
       },
       {
         title: "Progress Metrics",
         description:
-          "Отслеживание показателей тела, пересчет плана и обновление программы по данным",
+          "Отслеживание показателей, периодическая корректировка и обновление программы",
       },
       {
-        title: "Private-Class Mood",
+        title: "Calm Premium Mood",
         description:
-          "Меньше шума, больше концентрации, чистая визуальная среда и премиальная атмосфера",
+          "Меньше шума, больше концентрации, чистая визуальная среда и дисциплина",
       },
     ],
   },
@@ -475,36 +475,36 @@ const ruContent: SiteContent = {
     eyebrow: "Атмосфера",
     title: "Реальный ритм Balance",
     description:
-      "Визуальные моменты тренировок, восстановления и дисциплинированного daily-подхода",
+      "Визуальные сцены тренировок, восстановления и ежедневной спортивной дисциплины",
     shots: [
       {
-        title: "Morning Reset",
-        caption: "Старт с дыханием и сфокусированным вниманием",
+        title: "Strength Floor",
+        caption: "Контролируемая нагрузка и точная техника",
         toneClassName: toneClasses[0],
       },
       {
-        title: "Strength Session",
-        caption: "Контролируемая интенсивность и точная техника",
+        title: "Functional Zone",
+        caption: "Динамика движения и активная мобильность",
         toneClassName: toneClasses[1],
       },
       {
-        title: "Recovery Zone",
-        caption: "Восстановление как база следующей тренировки",
+        title: "Pool Rhythm",
+        caption: "Сбалансированная среда для восстановления",
         toneClassName: toneClasses[2],
       },
       {
-        title: "Mobility Flow",
-        caption: "Амплитуда, контроль и свобода суставов",
+        title: "Recovery Ritual",
+        caption: "Снижение стресса и перезагрузка нервной системы",
         toneClassName: toneClasses[3],
       },
       {
-        title: "Evening Conditioning",
-        caption: "Рассчитанная работа в конце дня",
+        title: "Group Energy",
+        caption: "Тренерская структура и командный темп",
         toneClassName: toneClasses[4],
       },
       {
-        title: "Calm Finish",
-        caption: "Сбалансированное завершение и чистый reset",
+        title: "Evening Focus",
+        caption: "Спокойный финал дня с осознанной нагрузкой",
         toneClassName: toneClasses[5],
       },
     ],
@@ -512,11 +512,11 @@ const ruContent: SiteContent = {
   finalCta: {
     title: "Запишитесь на пробный визит",
     subtitle:
-      "Познакомьтесь с Balance Sport Complex и выстройте личную систему тренировок и восстановления",
+      "Присоединяйтесь к Balance Sport Complex и постройте личную систему тренировок и восстановления",
   },
   footer: {
     description:
-      "Современный спорткомплекс с сбалансированной системой силы, движения и восстановления",
+      "Современный спорткомплекс со сбалансированной системой силы, движения и восстановления",
     rights: "Все права защищены",
   },
 };

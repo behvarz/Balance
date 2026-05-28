@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --bg-main: #0f151b;
-  --bg-secondary: #162029;
-  --surface: #1d2933;
+  --bg-main: #111a22;
+  --bg-secondary: #1a2631;
+  --surface: #21303b;
   --brand-green: #14945d;
   --accent-green: #28c279;
   --luxury-amber: #cc8e3f;
@@ -19,15 +19,15 @@
 @theme inline {
   --font-sans: var(--font-manrope), var(--font-armenian);
   --font-body: var(--font-manrope), var(--font-armenian);
-  --font-display: var(--font-montserrat), var(--font-armenian);
+  --font-display: var(--font-exo2), var(--font-armenian);
 }
 
 body {
   background:
-    radial-gradient(circle at 12% 16%, rgb(40 194 121 / 14%), transparent 42%),
-    radial-gradient(circle at 86% 14%, rgb(227 168 88 / 12%), transparent 34%),
-    radial-gradient(circle at 72% 84%, rgb(79 144 255 / 10%), transparent 44%),
-    linear-gradient(155deg, #0f151b 0%, #162029 48%, #111820 100%);
+    radial-gradient(circle at 14% 14%, rgb(40 194 121 / 16%), transparent 40%),
+    radial-gradient(circle at 84% 16%, rgb(227 168 88 / 13%), transparent 34%),
+    radial-gradient(circle at 78% 82%, rgb(96 155 255 / 11%), transparent 46%),
+    linear-gradient(158deg, #111a22 0%, #1a2631 46%, #141f29 100%);
   color: var(--text-primary);
   font-family: var(--font-manrope), var(--font-armenian), ui-sans-serif, system-ui, sans-serif;
   text-rendering: optimizeLegibility;
@@ -92,7 +92,7 @@ button {
 
 .section-shell {
   border: 1px solid rgb(255 255 255 / 11%);
-  background: linear-gradient(162deg, rgb(39 54 66 / 85%), rgb(26 37 47 / 88%));
+  background: linear-gradient(162deg, rgb(45 62 75 / 86%), rgb(30 44 56 / 88%));
   border-radius: 24px;
   backdrop-filter: blur(14px);
 }

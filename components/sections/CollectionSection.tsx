@@ -1,8 +1,14 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+
+const sectionStats = [
+  { label: "07:00-23:00", note: "Mon-Sat" },
+  { label: "08:00-22:00", note: "Sun" },
+  { label: "Pool + Spa", note: "Recovery" },
+];
 
 export default function CollectionSection() {
   const { content } = useLanguage();
@@ -13,82 +19,84 @@ export default function CollectionSection() {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.35 }}
-          transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
-          className="section-shell p-6 md:p-10"
+          viewport={{ once: true, amount: 0.28 }}
+          transition={{ duration: 0.75, ease: [0.2, 0.8, 0.2, 1] }}
+          className="section-shell overflow-hidden p-6 md:p-10"
         >
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-3xl">
-              <p className="text-xs tracking-[0.22em] text-[#E3A858] uppercase">
+              <p className="text-[11px] tracking-[0.26em] text-[#E3A858] uppercase">
                 {content.collection.eyebrow}
               </p>
-              <h2 className="mt-4 font-display text-4xl leading-tight text-[#F2F6F8] md:text-5xl">
+              <h2 className="mt-4 font-display text-3xl leading-tight text-[#F2F6F8] md:text-5xl">
                 {content.collection.title}
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-[#B8C2C8] md:text-lg">
+              <p className="mt-5 text-sm leading-relaxed text-[#C0CBD2] md:text-base">
                 {content.collection.description}
               </p>
             </div>
 
-            <div className="rounded-2xl border border-white/12 bg-[#21313C]/65 px-5 py-4">
-              <p className="text-xs tracking-[0.16em] text-[#B8C2C8] uppercase">Balance Sport Complex</p>
-              <p className="mt-2 text-sm text-[#F2F6F8]">Gym | Group Workouts | Pool | Spa | Massage</p>
+            <div className="grid grid-cols-3 gap-2 self-start lg:self-auto">
+              {sectionStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-white/14 bg-[#21313D]/70 px-3 py-2 text-center"
+                >
+                  <p className="text-xs font-semibold text-[#F2F6F8]">{stat.label}</p>
+                  <p className="mt-1 text-[10px] tracking-[0.12em] text-[#AFC0CA] uppercase">
+                    {stat.note}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {content.collection.products.map((product, index) => (
-              <motion.article
-                key={product.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{
-                  duration: 0.7,
-                  ease: [0.2, 0.8, 0.2, 1],
-                  delay: index * 0.06,
-                }}
-                className="group rounded-2xl border border-white/12 bg-[#1E2D37]/78 p-5 transition-transform hover:-translate-y-1"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <span className="text-xs tracking-[0.2em] text-[#E3A858] uppercase">
-                    0{index + 1}
-                  </span>
-                  <span className="rounded-full border border-white/14 bg-[#233542]/70 px-3 py-1 text-xs text-[#B8C2C8]">
-                    {product.tastingNote}
-                  </span>
-                </div>
-
-                <div className="relative mt-4 h-44 overflow-hidden rounded-xl border border-white/10">
-                  <Image
-                    src={
-                      index === 0
-                        ? "/images/product-signature.png"
-                        : index === 1
-                          ? "/images/product-daily.png"
-                          : "/images/product-midnight.png"
-                    }
-                    alt={product.name}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover opacity-78 transition duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,21,27,0)_40%,rgba(15,21,27,0.72)_100%)]" />
-                </div>
-
-                <h3 className="mt-5 font-display text-3xl leading-tight text-[#F2F6F8]">
-                  {product.name}
+          <div className="mt-10 grid gap-5 lg:grid-cols-12">
+            <article className="group relative overflow-hidden rounded-2xl border border-white/12 lg:col-span-6">
+              <div className="relative h-[360px] md:h-[440px]">
+                <Image
+                  src="/images/product-signature.png"
+                  alt="Balance strength floor"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,30,0)_42%,rgba(15,22,30,0.86)_100%)]" />
+              <div className="absolute right-5 bottom-5 left-5">
+                <p className="text-[10px] tracking-[0.2em] text-[#E3A858] uppercase">Balance Sport Complex</p>
+                <h3 className="mt-2 font-display text-2xl text-[#F2F6F8] md:text-3xl">
+                  Gym | Group Workouts | Pool | Spa | Massage
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-[#B8C2C8]">{product.description}</p>
+              </div>
+            </article>
 
-                <div className="mt-5 flex items-center justify-between">
-                  <span className="text-xs tracking-[0.18em] text-[#B8C2C8] uppercase">
-                    {content.actions.from}
-                  </span>
-                  <span className="font-display text-3xl text-[#28C279]">{product.price}</span>
-                </div>
-              </motion.article>
-            ))}
+            <div className="grid gap-4 lg:col-span-6">
+              {content.collection.products.map((product, index) => (
+                <motion.article
+                  key={product.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.28 }}
+                  transition={{ duration: 0.65, delay: index * 0.07, ease: [0.2, 0.8, 0.2, 1] }}
+                  className="rounded-2xl border border-white/12 bg-[#20303B]/72 p-5"
+                >
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <p className="text-[11px] tracking-[0.18em] text-[#B7C5CD] uppercase">{content.actions.from}</p>
+                      <p className="mt-1 font-display text-3xl text-[#28C279]">{product.price}</p>
+                    </div>
+                    <span className="rounded-full border border-white/14 bg-[#223540]/75 px-3 py-1 text-[10px] tracking-[0.12em] text-[#DDE5EA] uppercase">
+                      0{index + 1}
+                    </span>
+                  </div>
+
+                  <h3 className="mt-4 font-display text-2xl text-[#F2F6F8]">{product.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-[#C0CBD2]">{product.description}</p>
+                  <p className="mt-3 text-[11px] tracking-[0.08em] text-[#9AB1BE]">{product.tastingNote}</p>
+                </motion.article>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

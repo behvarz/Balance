@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Manrope, Montserrat, Noto_Sans_Armenian } from "next/font/google";
+import { Exo_2, Manrope, Noto_Sans_Armenian } from "next/font/google";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const exo2 = Exo_2({
+  variable: "--font-exo2",
   subsets: ["latin", "cyrillic"],
   weight: ["500", "600", "700", "800"],
   display: "swap",
@@ -37,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="am"
-      className={`${montserrat.variable} ${manrope.variable} ${notoArmenian.variable} h-full antialiased`}
+      className={`${exo2.variable} ${manrope.variable} ${notoArmenian.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-[var(--bg-main)] text-[var(--text-primary)] font-body">
         <LanguageProvider>{children}</LanguageProvider>

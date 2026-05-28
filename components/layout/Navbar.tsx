@@ -97,7 +97,7 @@ export default function Navbar() {
             href="tel:+37441910911"
             className="inline-flex items-center justify-center rounded-full border border-white/18 bg-[#24313B]/74 px-4 py-2 text-[11px] tracking-[0.14em] text-[#F2F6F8] hover:-translate-y-0.5 hover:border-[#28C279]/62 hover:bg-[#14945D]/26"
           >
-            041 910 911
+            041910911
           </Link>
         </div>
 
@@ -181,7 +181,7 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="inline-flex w-full items-center justify-center rounded-xl border border-white/16 bg-[#24313B]/76 px-4 py-2.5 text-[11px] tracking-[0.18em] text-[#F2F6F8]"
               >
-                041 910 911
+                041910911
               </Link>
             </div>
           </div>
